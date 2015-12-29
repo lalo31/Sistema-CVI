@@ -24,7 +24,7 @@
                         <f:facet name="header">
                             Lista de Productos
                         </f:facet>
-                        <p:column headerText="Codigo de producto" filterBy="#{item.numeroCodigo}">
+                        <p:column headerText="Código de producto" filterBy="#{item.numeroCodigo}">
                             <h:outputText value="#{item.numeroCodigo}"/>
                         </p:column>
                         <p:column headerText="Nombre del producto" filterBy="#{item.nombreProducto}">
@@ -33,29 +33,29 @@
                         <p:column headerText="Marca del producto">
                             <h:outputText value="#{item.catProveedorNumeroProveedores}"/>
                         </p:column>
-                        <p:column headerText="Categoria del producto">
+                        <p:column headerText="Categoría del producto">
                             <h:outputText value="#{item.categoriaIdCategoria}"/>
                         </p:column>
                         <p:column headerText="Producto en stock">
                             <h:outputText value="#{item.cantidad}"/>
                         </p:column>
-                        <p:column headerText="Stock Minimo">
+                        <p:column headerText="Stock Mínimo">
                             <h:outputText value="#{item.cantidadMin}"/>
                         </p:column>
-                        <p:column headerText="Stock Maximo">
+                        <p:column headerText="Stock Máximo">
                             <h:outputText value="#{item.cantidadMax}"/>
                         </p:column>
                         <p:column headerText="Precio unitario">
                             <h:outputText value="#{item.precioVentaUnitario}"/>
                         </p:column>
-                        <p:column headerText="Descripcion del producto">
+                        <p:column headerText="Descripción del producto">
                             <h:outputText value="#{item.descripcionProducto}"/>
                         </p:column>
                     </p:dataTable>
 
                     <p:dialog header="Datos del producto" widgetVar="dialogDetalle" modal="true" showEffect="explode" hideEffect="bounce">
                         <h:panelGrid id="panelDetalle" columns="3">
-                            <p:outputLabel value="Codigo de producto" for="txtCodigoProducto"/>
+                            <p:outputLabel value="Código de producto" for="txtCodigoProducto"/>
                             <p:inputText id="txtCodigoProducto" label="Codigo del Producto" value="#{mBCatProductos.productos.numeroCodigo}" required="true" requiredMessage="Codigo de producto requerido">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
@@ -65,7 +65,7 @@
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtNombreProducto"/>
-                            <p:outputLabel value="Descripcion del producto" for="txtDescripcionProducto"/>
+                            <p:outputLabel value="Descripción del producto" for="txtDescripcionProducto"/>
                             <p:inputText id="txtDescripcionProducto" label="Descripcion del Producto" value="#{mBCatProductos.productos.descripcionProducto}" required="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
@@ -97,13 +97,13 @@
                             </p:inputText>
                             <p:message for="txtCantidad"/>
                             
-                            <p:outputLabel value="Stock Minimo" for="txtCantidad2"/>
+                            <p:outputLabel value="Stock Mínimo" for="txtCantidad2"/>
                             <p:inputText id="txtCantidad2" label="Stock Minimo" value="#{mBCatProductos.productos.cantidadMin}" required="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtCantidad2"/>
                             
-                            <p:outputLabel value="Stock Maximo" for="txtCantidad3"/>
+                            <p:outputLabel value="Stock Máximo" for="txtCantidad3"/>
                             <p:inputText id="txtCantidad3" label="Stock Maximo" value="#{mBCatProductos.productos.cantidadMax}" required="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>

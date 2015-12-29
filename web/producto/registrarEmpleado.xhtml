@@ -19,7 +19,7 @@
                 <h:form id="frmRegistrarProducto">
                     <p:growl id="msjGral" showDetail="true" sticky="false"/>
                     <h:panelGrid columns="3">
-                        <p:outputLabel value="Codigo de producto" for="txtCodigoProducto"/>
+                        <p:outputLabel value="Código de producto" for="txtCodigoProducto"/>
                         <p:inputText id="txtCodigoProducto" label="Codigo del Producto" value="#{mBCatProductos.productos.numeroCodigo}" required="true" requiredMessage="Codigo de producto requerido">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
@@ -29,7 +29,7 @@
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtNombreProducto"/>
-                        <p:outputLabel value="Descripcion del producto" for="txtDescripcionProducto"/>
+                        <p:outputLabel value="Descripción del producto" for="txtDescripcionProducto"/>
                         <p:inputText id="txtDescripcionProducto" label="Descripcion del Producto" value="#{mBCatProductos.productos.descripcionProducto}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
@@ -61,13 +61,13 @@
                         </p:inputText>
                         <p:message for="txtCantidad"/>
                         
-                        <p:outputLabel value="Stock Minimo" for="txtCantidad2"/>
+                        <p:outputLabel value="Stock Mínimo" for="txtCantidad2"/>
                         <p:inputText id="txtCantidad2" label="Stock Minimo" value="#{mBCatProductos.productos.cantidadMin}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtCantidad2"/>
                         
-                        <p:outputLabel value="Stock Maximo" for="txtCantidad3"/>
+                        <p:outputLabel value="Stock Máximo" for="txtCantidad3"/>
                         <p:inputText id="txtCantidad3" label="Stock Maximo" value="#{mBCatProductos.productos.cantidadMax}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
