@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <script>
+        function valida(e){
+            tecla = (document.all) ? e.keyCode : e.which;
+
+            //Tecla de retroceso para borrar, siempre la permite
+            if (tecla==8){
+                return true;
+             }
+        
+             // Patron de entrada, en este caso solo acepta numeros
+             patron =/[0-9]/;
+             tecla_final = String.fromCharCode(tecla);
+            return patron.test(tecla_final);
+        }
+        </script>
+
+        <ui:composition template="./../layout/layout2.xhtml">
+
+            <ui:define name="top">
+                
+            </ui:define>
+
+            <ui:define name="content">
+                <h2>Lista de Usuarios</h2>
+                <hr />
+                <h:form id="frmListaUsuarios">
+                    <p:growl id="msjGral" showDetail="true" sticky="false"/>
+                    <p:dataTable id="tablaUsuario" var="item" value="#{mBUsuarios.all}" paginator="true" rows="10" selection="#{mBUsuarios.usuarios}" selectionMode="single" rowKey="#{item.idUsuarios}" filteredValue="#{mBUsuarios.listaUsuariosFiltrado}">
+                        <p:ajax event="rowSelect" update=":frmListaUsuarios:panelDetalle" oncomplete="dialogDetalle.show()"/>
+                        <f:facet name="header">
+                            Consulta General
+                        </f:facet>
+                        <p:column headerText="Nombre" >
+                            <h:outputText value="#{item.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Apellido Paterno" >
+                            <h:outputText value="#{item.apPaterno}"/>
+                        </p:column>
+                        <p:column headerText="Apellido Materno">
+                            <h:outputText value="#{item.apMaterno}"/>
+                        </p:column>
+                        <p:column headerText="Teléfono">
+                            <h:outputText value="#{item.telefono}"/>
+                        </p:column>
+                        <p:column headerText="Tipo de Usuario">
+                            <h:outputText value="#{item.tipoUsuarioIdTipoUsuario}"/>
+                        </p:column>
+                        <p:column headerText="Nombre de Usuario">
+                            <h:outputText value="#{item.nombreUsuario}"/>
+                        </p:column>
+                        
+                    </p:dataTable>
+                   
+                    <p:dialog header="Datos del usuario" widgetVar="dialogDetalle" modal="true" showEffect="explode" hideEffect="bounce">
+                        <h:panelGrid id="panelDetalle" columns="3">
+                            <p:outputLabel value="Nombre" for="txtNombre"/>
+                            <p:inputText id="txtNombre" label="Nombre" value="#{mBUsuarios.usuarios.nombre}" required="true" requiredMessage="Nombre requerido">
+                                <f:validator validatorId="validatorVacio"/>
+                            </p:inputText>
+                            <p:message for="txtNombre"/>
+                            <p:outputLabel value="Apellido paterno" for="txtApellidoPa"/>
+                            <p:inputText id="txtApellidoPa" label="Apellido paterno" value="#{mBUsuarios.usuarios.apPaterno}" required="true">
+                                <f:validator validatorId="validatorVacio"/>
+                            </p:inputText>
+                            <p:message for="txtApellidoPa"/>
+                            <p:outputLabel value="Apellido Materno" for="txtApellidoMa"/>
+                            <p:inputText id="txtApellidoMa" label="Apellido Materno" value="#{mBUsuarios.usuarios.apMaterno}" required="true">
+                                <f:validator validatorId="validatorVacio"/>
+                            </p:inputText>
+                            <p:message for="txtApellidoMa"/>
+                            <p:outputLabel value="Telefono" for="txtTel"/>
+                            <p:inputText id="txtTel" label="Telefono" value="#{mBUsuarios.usuarios.telefono}" required="true">
+                                <f:validator validatorId="validatorVacio"/>
+                            </p:inputText>
+                            <p:message for="txtTel"/>
+                            
+                            <p:outputLabel for="usuarioType" value="Tipo de Usuario"/>
+                        <p:selectOneMenu id="usuarioType" value="#{mBUsuarios.usuarios.tipoUsuarioIdTipoUsuario}" style="width:175px">
+                            <f:selectItem itemLabel="Selecciona" itemValue="" />
+                            <f:selectItem itemLabel="1.- Gerente" itemValue="1" />
+                            <f:selectItem itemLabel="2.- Empleado" itemValue="2" />                            
+                        </p:selectOneMenu>                            
+                        <p:message for="usuarioType"/>
+                        
+                            <p:outputLabel value="Nombre de usuario" for="txtNombreUsuario"/>
+                            <p:inputText id="txtNombreUsuario" label="Nombre de usuario" value="#{mBUsuarios.usuarios.nombreUsuario}" required="true">
+                                <f:validator validatorId="validatorVacio"/>
+                            </p:inputText>
+                            <p:message for="txtNombreUsuario"/>
+                            
+                            <p:outputLabel value="Contrasenia" for="txtContrasenia"/>
+                                           <p:inputText id="txtContrasenia" label="Contrasenia" value="#{mBUsuarios.usuarios.contrasena}" required="true">
+                                </p:inputText>
+                                           <p:message for="txtContrasenia"/>
+                            
+                            <p:commandButton value="Eliminar Usuario" actionListener="#{mBUsuarios.deleteUsuario()}" update="frmListaUsuarios">
+                             <p:confirm header="Confirmación" message="¿Estas seguro de borrar al usuario?" icon="ui-icon-alert" />
+                                </p:commandButton>       
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                                           
+                          
+                             <p:commandButton value="Modificar Usuario" actionListener="#{mBUsuarios.update()}" update="frmListaUsuarios">
+                             <p:confirm header="Confirmación" message="¿Estas seguro de modificar al usuario?" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                           <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                           
+                            
+                           
+                        </h:panelGrid>
+                    </p:dialog>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="">
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

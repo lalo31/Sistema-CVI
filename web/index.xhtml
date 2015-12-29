@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./layout/layout.xhtml">
+
+            <ui:define name="top">
+                
+            </ui:define>
+
+            <ui:define name="content">
+                <h2> Inicio de sesión </h2>
+                <hr />
+                <h:form id="frmLogin"> 
+                    <p:growl id="mensajeGral" showDetail="true" sticky="false"/>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Usuario" for="txtNombreUsuario"/>
+                        <p:inputText id="txtNombreUsuario" value="#{mBSLogin.usuario}"/>
+                        <p:outputLabel value="Contraseña" for="txtContrasena"/>
+                        <p:password id="txtContrasena" value="#{mBSLogin.contrasena}" />
+                        <h:panelGroup></h:panelGroup>
+                        <p:commandButton value="Ingresar" action="#{mBSLogin.login()}" update="frmLogin"/>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

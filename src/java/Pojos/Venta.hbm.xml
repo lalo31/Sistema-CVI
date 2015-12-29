@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 7, 2015 3:15:46 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Venta" table="venta" catalog="dbscvi">
+        <id name="numeroVenta" type="java.lang.Integer">
+            <column name="numeroVenta" />
+            <generator class="identity" />
+        </id>
+        <property name="precioVentaTotal" type="big_decimal">
+            <column name="precioVentaTotal" precision="18" not-null="true" />
+        </property>
+        <property name="fechaVenta" type="timestamp">
+            <column name="fechaVenta" length="19" not-null="true" />
+        </property>
+        <set name="ventadetalles" table="ventadetalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="numeroVenta" not-null="true" />
+            </key>
+            <one-to-many class="Pojos.Ventadetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 7, 2015 3:15:46 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Usuarios" table="usuarios" catalog="dbscvi">
+        <id name="idUsuarios" type="java.lang.Integer">
+            <column name="idUsuarios" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="apPaterno" type="string">
+            <column name="apPaterno" length="45" not-null="true" />
+        </property>
+        <property name="apMaterno" type="string">
+            <column name="apMaterno" length="45" not-null="true" />
+        </property>
+        <property name="telefono" type="int">
+            <column name="telefono" not-null="true" />
+        </property>
+        <property name="nombreUsuario" type="string">
+            <column name="nombreUsuario" length="45" not-null="true" />
+        </property>
+        <property name="contrasena" type="string">
+            <column name="contrasena" length="45" not-null="true" />
+        </property>
+        <property name="tipoUsuarioIdTipoUsuario" type="int">
+            <column name="TipoUsuario_idTipoUsuario" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

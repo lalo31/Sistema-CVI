@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 7, 2015 3:15:46 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Tipousuario" table="tipousuario" catalog="dbscvi">
+        <id name="idTipoUsuario" type="java.lang.Integer">
+            <column name="idTipoUsuario" />
+            <generator class="identity" />
+        </id>
+        <property name="tipoUsuario" type="string">
+            <column name="tipoUsuario" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

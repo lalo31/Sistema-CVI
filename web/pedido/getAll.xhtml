@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../layout/layout2.xhtml">
+
+            <ui:define name="top">
+                
+            </ui:define>
+
+            <ui:define name="content">
+                <h2>Lista de pedidos</h2>
+                <hr />
+                <h:form id="frmListaPedido">
+                    <p:growl id="msjGral" showDetail="true" sticky="false"/>
+                    <p:dataTable id="tablaPedido" var="item" value="#{mBPedido.all}" paginator="true" rows="10" selection="#{mBPedido.pedido}" selectionMode="single" rowKey="#{item.numeroPedido}">
+                          
+                        <f:facet name="header">
+                            Lista de pedidos
+                        
+                        </f:facet>
+                        <p:column headerText="Numero de pedido">
+                            <h:outputText value="#{item.numeroPedido}"/>
+                        </p:column>
+                        <p:column headerText="Fecha de pedido">
+                            <h:outputText value="#{item.fechaPedido}"/>
+                        </p:column>
+                        <p:column headerText="Categoria del producto">
+                            <h:outputText value="#{item.categoriaIdCategoria}"/>
+                        </p:column>
+                        <p:column headerText="Proveedor">
+                            <h:outputText value="#{item.catProveedorNumeroProveedores}"/>
+                        </p:column>
+                        <p:column headerText="Producto">
+                            <h:outputText value="#{item.catProductoIdProducto}"/>
+                        </p:column>
+                     
+                        <p:column headerText="Cantidad a requerir">
+                            <h:outputText value="#{item.cantidadRequerida}"/>
+                        </p:column>
+                        <p:column headerText="Precio aprox">
+                            <h:outputText value="#{item.precioAprox}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <h:commandLink value="Descargar Pedido">                
+                               <p:graphicImage name="/images/pdf.png" width="24"/>                
+                               <p:dataExporter type="pdf" target="tablaPedido" fileName="pedido" />            
+                           </h:commandLink>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="">
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 7, 2015 3:15:46 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Pedido" table="pedido" catalog="dbscvi">
+        <id name="numeroPedido" type="java.lang.Integer">
+            <column name="numeroPedido" />
+            <generator class="identity" />
+        </id>
+        <property name="fechaPedido" type="date">
+            <column name="fechaPedido" length="10" not-null="true" />
+        </property>
+        <property name="cantidadRequerida" type="int">
+            <column name="cantidadRequerida" not-null="true" />
+        </property>
+        <property name="precioAprox" type="float">
+            <column name="precioAprox" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="usuariosIdUsuarios" type="int">
+            <column name="Usuarios_idUsuarios" not-null="true" />
+        </property>
+        <property name="categoriaIdCategoria" type="int">
+            <column name="Categoria_idCategoria" not-null="true" />
+        </property>
+        <property name="catProveedorNumeroProveedores" type="int">
+            <column name="CatProveedor_numeroProveedores" not-null="true" />
+        </property>
+        <property name="catProductoIdProducto" type="int">
+            <column name="CatProducto_idProducto" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

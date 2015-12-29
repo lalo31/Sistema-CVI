@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <script>
+        function validar(e, solicitar) {
+                // Admitir solo letras
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla == 8)
+                    return true;
+                patron = /[\D\s]/;
+                te = String.fromCharCode(tecla);
+                if (!patron.test(te))
+                    return false;
+                // No admitir espacios iniciales y convertir 1ª letra a mayúscula
+                txt = solicitar.value;
+                
+                if (txt.length == 0 || txt.substr(txt.length - 1, 1) == ' ') {
+                    solicitar.value = txt + te.toUpperCase();
+                    return false;
+                }
+            }
+            
+            function valida(e){
+            tecla = (document.all) ? e.keyCode : e.which;
+
+            //Tecla de retroceso para borrar, siempre la permite
+            if (tecla==8){
+                return true;
+             }
+        
+             // Patron de entrada, en este caso solo acepta numeros
+             patron =/[0-9]/;
+             tecla_final = String.fromCharCode(tecla);
+            return patron.test(tecla_final);
+        }
+        </script>
+
+        <ui:composition template="./../layout/layout2.xhtml">
+
+            <ui:define name="top">
+            </ui:define>
+
+            <ui:define name="content">
+                <h2>Registro de Usuarios</h2>
+                <hr />
+                <h:form id="frmRegistrarUsuarios">
+                    <p:growl id="msjGral" showDetail="true" sticky="false"/>
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Nombre" for="txtNombre"/>
+                        <p:inputText id="txtNombre" label="Nombre" onkeypress="return validar(event, this)" value="#{mBUsuarios.usuarios.nombre}" required="true" requiredMessage="Nombre requerido">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtNombre"/>
+                        <p:outputLabel value="Apellido paterno" for="txtApellidoPa"/>
+                        <p:inputText id="txtApellidoPa" label="Apellido paterno" onkeypress="return validar(event, this)" value="#{mBUsuarios.usuarios.apPaterno}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtApellidoPa"/>
+                        <p:outputLabel value="Apellido Materno" for="txtApellidoMa"/>
+                        <p:inputText id="txtApellidoMa" label="Apellido Materno" onkeypress="return validar(event, this)" value="#{mBUsuarios.usuarios.apMaterno}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtApellidoMa"/>
+                        <p:outputLabel value="Telefono" for="txtTel"/>
+                        <p:inputText id="txtTel" label="Telefono" onkeypress="return valida(event, this)" value="#{mBUsuarios.usuarios.telefono}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtTel"/>
+                        
+                        <p:outputLabel for="usuarioType" value="Tipo de Usuario"/>
+                        <p:selectOneMenu id="usuarioType" value="#{mBUsuarios.usuarios.tipoUsuarioIdTipoUsuario}" style="width:175px">
+                            <f:selectItem itemLabel="Selecciona" itemValue="" />
+                            <f:selectItem itemLabel="1.- Gerente" itemValue="1" />
+                            <f:selectItem itemLabel="2.- Empleado" itemValue="2" />                            
+                        </p:selectOneMenu>
+                        <p:message for="usuarioType"/>
+                        
+                        <p:outputLabel value="Nombre de usuario" for="txtNombreUsuario"/>
+                        <p:inputText id="txtNombreUsuario" label="Nombre de usuario" value="#{mBUsuarios.usuarios.nombreUsuario}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtNombreUsuario"/>
+                        <p:outputLabel value="Contrasena" for="txtContrasena"/>
+                        <p:password id="txtContrasena" label="Contrasena" value="#{mBUsuarios.usuarios.contrasena}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:password>
+                        <p:message for="txtContrasena"/>
+                        <p:commandButton value="Registrar Usuario" actionListener="#{mBUsuarios.registrar()}" update="frmRegistrarUsuarios"/>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

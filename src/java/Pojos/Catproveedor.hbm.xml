@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 7, 2015 3:15:46 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Catproveedor" table="catproveedor" catalog="dbscvi">
+        <id name="numeroProveedores" type="java.lang.Integer">
+            <column name="numeroProveedores" />
+            <generator class="identity" />
+        </id>
+        <property name="rfcProveedores" type="string">
+            <column name="rfcProveedores" length="45" not-null="true" />
+        </property>
+        <property name="nombreProveedores" type="string">
+            <column name="nombreProveedores" length="45" not-null="true" />
+        </property>
+        <property name="nombreDistribuidora" type="string">
+            <column name="nombreDistribuidora" length="45" not-null="true" />
+        </property>
+        <property name="telefono" type="int">
+            <column name="telefono" not-null="true" />
+        </property>
+        <property name="correoProveedor" type="string">
+            <column name="correoProveedor" length="45" not-null="true" />
+        </property>
+        <property name="categoriaIdCategoria" type="int">
+            <column name="Categoria_idCategoria" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

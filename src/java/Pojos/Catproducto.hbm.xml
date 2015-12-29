@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 7, 2015 3:15:46 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Catproducto" table="catproducto" catalog="dbscvi">
+        <id name="idProducto" type="java.lang.Integer">
+            <column name="idProducto" />
+            <generator class="identity" />
+        </id>
+        <property name="numeroCodigo" type="int">
+            <column name="numeroCodigo" not-null="true" />
+        </property>
+        <property name="nombreProducto" type="string">
+            <column name="nombreProducto" length="45" not-null="true" />
+        </property>
+        <property name="fechaRegistroProducto" type="date">
+            <column name="fechaRegistroProducto" length="10" not-null="true" />
+        </property>
+        <property name="descripcionProducto" type="string">
+            <column name="descripcionProducto" length="45" not-null="true" />
+        </property>
+        <property name="categoriaIdCategoria" type="int">
+            <column name="Categoria_idCategoria" not-null="true" />
+        </property>
+        <property name="catProveedorNumeroProveedores" type="int">
+            <column name="CatProveedor_numeroProveedores" not-null="true" />
+        </property>
+        <property name="precioVentaUnitario" type="big_decimal">
+            <column name="precioVentaUnitario" precision="18" not-null="true" />
+        </property>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <property name="cantidadMin" type="int">
+            <column name="cantidadMin" not-null="true" />
+        </property>
+        <property name="cantidadMax" type="int">
+            <column name="cantidadMax" not-null="true" />
+        </property>
+        <set name="ventadetalles" table="ventadetalle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idProducto" not-null="true" />
+            </key>
+            <one-to-many class="Pojos.Ventadetalle" />
+        </set>
+    </class>
+</hibernate-mapping>

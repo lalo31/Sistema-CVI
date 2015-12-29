@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <script>
+            function validar(e, solicitar) {
+                // Admitir solo letras
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla == 8)
+                    return true;
+                patron = /[\D\s]/;
+                te = String.fromCharCode(tecla);
+                if (!patron.test(te))
+                    return false;
+                // No admitir espacios iniciales y convertir 1ª letra a mayúscula
+                txt = solicitar.value;
+                
+                if (txt.length == 0 || txt.substr(txt.length - 1, 1) == ' ') {
+                    solicitar.value = txt + te.toUpperCase();
+                    return false;
+                }
+            }
+            
+            function valida(e){
+            tecla = (document.all) ? e.keyCode : e.which;
+
+            //Tecla de retroceso para borrar, siempre la permite
+            if (tecla==8){
+                return true;
+             }
+        
+             // Patron de entrada, en este caso solo acepta numeros
+             patron =/[0-9]/;
+             tecla_final = String.fromCharCode(tecla);
+            return patron.test(tecla_final);
+        }
+        </script>
+
+        <ui:composition template="./../layout/layout2.xhtml">
+
+            <ui:define name="top">
+            </ui:define>
+
+            <ui:define name="content">
+                <h2>Registro de Proveedores</h2>
+                <hr />
+                <h:form id="frmRegistrarProveedores">
+                    <p:growl id="msjGral" showDetail="true" sticky="false"/>
+                    <h:panelGrid columns="3">
+
+
+                        <p:outputLabel value="RFC del proveedor" for="txtRfcProveedor"/>
+                        <p:inputText id="txtRfcProveedor" label="RFC del proveedor" onkeyup="this.value=this.value.toUpperCase();" value="#{mBCatProveedores.proveedores.rfcProveedores}" required="true" requiredMessage="RFC requerido">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtRfcProveedor"/>
+
+
+                        <p:outputLabel value="Nombre del proveedor" for="txtNombreProveedor"/>
+                        <p:inputText id="txtNombreProveedor" label="Nombre del Proveedor"  onkeypress="return validar(event, this)" value="#{mBCatProveedores.proveedores.nombreProveedores}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtNombreProveedor"/>
+
+
+                        <p:outputLabel value="Nombre de la distribuidora" for="txtNombreDistribuidora"/>
+                        <p:inputText id="txtNombreDistribuidora" label="Nombre de la distribuidor" onkeypress="return validar(event, this)" value="#{mBCatProveedores.proveedores.nombreDistribuidora}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtNombreDistribuidora"/>
+
+
+                        <p:outputLabel value="Teléfono del proveedor" for="txtTelProveedor"/>
+                        <p:inputText id="txtTelProveedor" label="Teléfono del proveedor" onkeypress="return valida(event,this)" value="#{mBCatProveedores.proveedores.telefono}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtTelProveedor"/>
+
+
+                        <p:outputLabel value="Correo del proveedor" for="txtCorreoProveedor"/>
+                        <p:inputText id="txtCorreoProveedor" label="Correo del proveedor" value="#{mBCatProveedores.proveedores.correoProveedor}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                            <f:validator validatorId="validatorEmail"/>
+                        </p:inputText>
+                        <p:message for="txtCorreoProveedor"/>     
+
+                        <p:outputLabel for="console" value="Categoría del Proveedor"/>
+                        <p:selectOneMenu id="console" value="#{mBCatProveedores.proveedores.categoriaIdCategoria}" style="width:175px">
+                            <f:selectItem itemLabel="Selecciona Categoría" itemValue="" />
+                            <f:selectItem itemLabel="1.- Electricidad" itemValue="1" />
+                            <f:selectItem itemLabel="2.- Plomería" itemValue="2" />
+                            <f:selectItem itemLabel="3.- Construcción" itemValue="3" />
+                            <f:selectItem itemLabel="4.- Jardinería" itemValue="4" />
+                        </p:selectOneMenu>
+                        <p:message for="console"/> 
+                        <p:commandButton value="Registrar Proveedor" actionListener="#{mBCatProveedores.registrar()}" update="frmRegistrarProveedores"/>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

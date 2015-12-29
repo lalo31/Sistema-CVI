@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 7, 2015 3:15:46 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="Pojos.Ventadetalle" table="ventadetalle" catalog="dbscvi">
+        <id name="idVentaDetalle" type="java.lang.Integer">
+            <column name="idVentaDetalle" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="venta" class="Pojos.Venta" fetch="select">
+            <column name="numeroVenta" not-null="true" />
+        </many-to-one>
+        <many-to-one name="catproducto" class="Pojos.Catproducto" fetch="select">
+            <column name="idProducto" not-null="true" />
+        </many-to-one>
+        <property name="codigoBarrasProducto" type="int">
+            <column name="codigoBarrasProducto" not-null="true" />
+        </property>
+        <property name="nombreProducto" type="string">
+            <column name="nombreProducto" length="45" not-null="true" />
+        </property>
+        <property name="precioVentaUnitarioProducto" type="big_decimal">
+            <column name="precioVentaUnitarioProducto" precision="18" not-null="true" />
+        </property>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <property name="totalPrecioVenta" type="big_decimal">
+            <column name="totalPrecioVenta" precision="18" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

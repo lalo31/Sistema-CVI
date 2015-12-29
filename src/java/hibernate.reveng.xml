@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="dbscvi"/>
+  <table-filter match-name="catproducto"/>
+  <table-filter match-name="venta"/>
+  <table-filter match-name="ventadetalle"/>
+  <table-filter match-name="categoria"/>
+  <table-filter match-name="pedido"/>
+  <table-filter match-name="tipousuario"/>
+  <table-filter match-name="usuarios"/>
+  <table-filter match-name="catproveedor"/>
+</hibernate-reverse-engineering>

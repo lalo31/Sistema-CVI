@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../layout/layout2.xhtml">
+
+            <ui:define name="top">
+            </ui:define>
+
+            <ui:define name="content">
+                <h2>Pedidos</h2>
+                <hr />
+                <script type="text/javascript">
+                    function handleDrop(event, ui) {
+                        var droppedProduct = ui.draggable;
+
+                        droppedProduct.fadeOut('fast');
+                    }
+                </script>
+
+                <h:form id="proForm">
+                    <p:fieldset id="availableProductsField" legend="Productos">
+                        <p:dataTable id="availableProducts" var="item" value="#{mBCatProductos.all}"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                     paginator="true" rows="10" style="margin-bottom:20px">
+                            <p:column style="width:20px">
+                                <h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+                                <p:draggable for="dragIcon" revert="true" helper="clone"/>
+                            </p:column>
+
+                            <p:column headerText="Codigo de producto">
+                                <h:outputText value="#{item.numeroCodigo}"/>
+                            </p:column>
+                            <p:column headerText="Nombre del producto">
+                                <h:outputText value="#{item.nombreProducto}"/>
+                            </p:column>
+                            <p:column headerText="Marca del producto">
+                                <h:outputText value="#{item.catProveedorNumeroProveedores}"/>
+                            </p:column>
+                            <p:column headerText="Categoria del producto">
+                                <h:outputText value="#{item.categoriaIdCategoria}"/>
+                            </p:column>
+                            <p:column headerText="Producto en stock">
+                                <h:outputText value="#{item.cantidad}"/>
+                            </p:column>
+                            <p:column headerText="Precio unitario">
+                                <h:outputText value="#{item.precioVentaUnitario}"/>
+                            </p:column>
+                            <p:column headerText="Descripcion del producto">
+                                <h:outputText value="#{item.descripcionProducto}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:fieldset>
+
+                    <p:fieldset id="selectedProducts" legend="Producto seleccionado" style="margin-top:20px">
+                        <p:outputPanel id="dropArea">
+                            <h:outputText value="Arroja aqui el producto" rendered="#{empty mBCatProductos.listaProductosFiltrado}" style="font-size:24px;" />
+                            <p:dataTable id="selectedProductsTable" var="item" value="#{mBCatProductos.listaProductosFiltrado}" rendered="#{not empty mBCatProductos.listaProductosFiltrado}">
+                                <p:column headerText="Codigo de producto">
+                                    <h:outputText value="#{item.numeroCodigo}"/>
+                                </p:column>
+                                <p:column headerText="Nombre del producto">
+                                    <h:outputText value="#{item.nombreProducto}"/>
+                                </p:column>
+                                <p:column headerText="Marca del producto">
+                                    <h:outputText value="#{item.catProveedorNumeroProveedores}"/>
+                                </p:column>
+                                <p:column headerText="Categoria del producto">
+                                    <h:outputText value="#{item.categoriaIdCategoria}"/>
+                                </p:column>
+                                <p:column headerText="Producto en stock">
+                                    <h:outputText value="#{item.cantidad}"/>
+                                </p:column>
+                                <p:column headerText="Precio unitario">
+                                    <h:outputText value="#{item.precioVentaUnitario}"/>
+                                </p:column>
+                                <p:column headerText="Descripcion del producto">
+                                    <h:outputText value="#{item.descripcionProducto}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </p:outputPanel>
+                    </p:fieldset>
+
+                    <p:droppable for="selectedProducts" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableProducts" onDrop="handleDrop">
+                        <p:ajax listener="#{mBCatProductos.onProdcutsDrop}" update="dropArea availableProducts" />
+                    </p:droppable>
+                    
+                    <h:commandLink>
+                        <p:graphicImage name="/images/pdf.png" />
+                        <p:dataExporter type="pdf" target="selectedProductsTable" fileName="pedido" />
+                    </h:commandLink>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

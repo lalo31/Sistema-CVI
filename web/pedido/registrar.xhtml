@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../layout/layout2.xhtml">
+
+            <ui:define name="top">
+            </ui:define>
+
+            <ui:define name="content">
+                <h2>Generar Pedido de Compra</h2>
+                <hr />
+                <h:form id="frmRegistrarPedido">
+                    <p:growl id="msjGral" showDetail="true" sticky="false"/>
+                    <h:panelGrid columns="3">
+                        <p:outputLabel value="Fecha de Pedido" for="txtFecha"/>
+                        <p:calendar id="txtFecha" label="Fecha de Pedido"  showOn="button" value="#{mBPedido.pedido.fechaPedido}" pattern="dd/MM/yyyy" required="true" requiredMessage="Fecha de registro Requerida"/>
+                        <p:message for="txtFecha"/>
+
+                        <p:outputLabel for="console" value="Categoría del Producto"/>
+                        <p:selectOneMenu id="console" value="#{mBPedido.pedido.categoriaIdCategoria}" style="width:175px">
+                            <f:selectItem itemLabel="Selecciona Categoría" itemValue="" />
+                            <f:selectItem itemLabel="1.- Electricidad" itemValue="1" />
+                            <f:selectItem itemLabel="2.- Plomería" itemValue="2" />
+                            <f:selectItem itemLabel="3.- Construcción" itemValue="3" />
+                            <f:selectItem itemLabel="4.- Jardinería" itemValue="4" />
+                        </p:selectOneMenu>
+                        <p:message for="console"/>                        
+
+                        <p:outputLabel for="console1" value="Marca del Producto"/>
+                        <p:selectOneMenu id="console1" value="#{mBPedido.pedido.catProveedorNumeroProveedores}" style="width:175px">
+                            <f:selectItem itemLabel="Selecciona Marca" itemValue="" />
+                            <f:selectItem itemLabel="1.- Truper" itemValue="1" />
+                            <f:selectItem itemLabel="2.- Dos Valles" itemValue="2" />
+                            <f:selectItem itemLabel="3.- Ruipasa" itemValue="3" />
+                            <f:selectItem itemLabel="4.- Prisa" itemValue="4" />
+                        </p:selectOneMenu>
+                        <p:message for="console1"/> 
+                        
+                        <p:outputLabel value="Codigo del Producto" for="txtProducto"/>
+                        <p:inputText id="txtProducto" label="Producto" value="#{mBPedido.pedido.catProductoIdProducto}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtProducto"/>
+                        <p:outputLabel value="Cantidad a requerir" for="txtCant"/>
+                        <p:inputText id="txtCant" label="Cantidad a requerir" value="#{mBPedido.pedido.cantidadRequerida}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtCant"/>
+                        <p:outputLabel value="Precio Aproximado" for="txtPrecio"/>
+                        <p:inputText id="txtPrecio" label="Precio Aproximado" value="#{mBPedido.pedido.precioAprox}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtPrecio"/>
+                        <p:outputLabel value="Usuario" for="txtUsuario"/>
+                        <p:inputText id="txtUsuario" label="Usuario" value="#{mBPedido.pedido.usuariosIdUsuarios}" required="true">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtPrecio"/>
+                        <p:commandButton value="Registrar Pedido" actionListener="#{mBPedido.registrar()}" update="frmRegistrarPedido"/>
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
