@@ -7,6 +7,39 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
+        <script>
+            function validar(e, solicitar) {
+                // Admitir solo letras
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla == 8)
+                    return true;
+                patron = /[\D\s]/;
+                te = String.fromCharCode(tecla);
+                if (!patron.test(te))
+                    return false;
+                // No admitir espacios iniciales y convertir 1ª letra a mayúscula
+                txt = solicitar.value;
+                
+                if (txt.length == 0 || txt.substr(txt.length - 1, 1) == ' ') {
+                    solicitar.value = txt + te.toUpperCase();
+                    return false;
+                }
+            }
+            
+            function valida(e){
+            tecla = (document.all) ? e.keyCode : e.which;
+
+            //Tecla de retroceso para borrar, siempre la permite
+            if (tecla==8){
+                return true;
+             }
+        
+             // Patron de entrada, en este caso solo acepta numeros
+             patron =/[0-9]/;
+             tecla_final = String.fromCharCode(tecla);
+            return patron.test(tecla_final);
+        }
+        </script>
 
         <ui:composition template="./../layout/layout2.xhtml">
 
@@ -44,17 +77,17 @@
                         <p:message for="console1"/> 
                         
                         <p:outputLabel value="Codigo del Producto" for="txtProducto"/>
-                        <p:inputText id="txtProducto" label="Producto" value="#{mBPedido.pedido.catProductoIdProducto}" required="true">
+                        <p:inputText id="txtProducto" label="Producto" onkeypress="return valida(event,this)" value="#{mBPedido.pedido.catProductoIdProducto}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtProducto"/>
                         <p:outputLabel value="Cantidad a requerir" for="txtCant"/>
-                        <p:inputText id="txtCant" label="Cantidad a requerir" value="#{mBPedido.pedido.cantidadRequerida}" required="true">
+                        <p:inputText id="txtCant" label="Cantidad a requerir" onkeypress="return valida(event,this)" value="#{mBPedido.pedido.cantidadRequerida}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtCant"/>
                         <p:outputLabel value="Precio Aproximado" for="txtPrecio"/>
-                        <p:inputText id="txtPrecio" label="Precio Aproximado" value="#{mBPedido.pedido.precioAprox}" required="true">
+                        <p:inputText id="txtPrecio" label="Precio Aproximado" onkeypress="return valida(event,this)" value="#{mBPedido.pedido.precioAprox}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtPrecio"/>
