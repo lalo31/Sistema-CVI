@@ -61,13 +61,12 @@
                         <h:panelGroup>
                             Agregar por código de producto
 
-                            <p:inputText id="txtAgregarPorCodigoBarras" onkeypress="return valida(event, this)"  value="#{mBVenta.valorCodigoBarras}" >
-                                <p:ajax   listener="#{mBVenta.agregarListaVentaDetallePorCodigoBarras()}"  />
-                                <p:ajax   listener="#{mBVenta.calcularCostos()}"  />          
+                            <p:inputText id="txtAgregarPorCodigoBarras" onkeypress="return valida(event,this)"  value="#{mBVenta.valorCodigoBarras}" >
+                                <p:ajax  listener="#{mBVenta.agregarListaVentaDetallePorCodigoBarras()}"  />
+                                <p:ajax  listener="#{mBVenta.calcularCostos()}"  />          
 
-
-                            </p:inputText>
-                            <br /><br />
+                                </p:inputText>
+                                <br /><br />
 
                         </h:panelGroup>
                     </p:panelGrid>
@@ -88,8 +87,8 @@
                             <h:outputText value="#{item.precioVentaUnitarioProducto}"/>
                         </p:column>
                         <p:column headerText="Cantidad" style="text-align: center;">
-                            <p:inputText valueChangeListener="#{mBVenta.calcularCostos()}"  value="#{item.cantidad}" style="text-align: center;" > 
-                                <p:ajax  listener="#{mBVenta.calcularCostos()}"  /></p:inputText>
+                            <p:inputText valueChangeListener="#{mBVenta.calcularCostos()}" onkeypress="return valida(event,this)" value="#{item.cantidad}" style="text-align: center;" > 
+                                <p:ajax listener="#{mBVenta.calcularCostos()}"  /></p:inputText>
                         </p:column>
                         <p:column headerText="Total" style="text-align: center;">
                             Precio de venta= 
