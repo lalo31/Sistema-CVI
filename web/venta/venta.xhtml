@@ -63,12 +63,11 @@
                         <h:panelGroup>
                             Agregar por código de producto
 
-                            <p:inputText id="txtAgregarPorCodigoBarras" onkeypress="return valida(event, this)"  value="#{mBVenta.valorCodigoBarras}" />
+                            <p:inputText id="txtAgregarPorCodigoBarras" onkeypress="return valida(event, this)"  value="#{mBVenta.valorCodigoBarras}">
                                 <p:ajax event="keyup"  listener="#{mBVenta.agregarListaVentaDetallePorCodigoBarras()}"  />
                                 <p:ajax event="keyup"  listener="#{mBVenta.calcularCostos()}"  />          
 
-
-                            <!--</p:inputText>-->
+                            </p:inputText>
                             <br /><br />
 
                         </h:panelGroup>
