@@ -26,26 +26,28 @@
                     return false;
                 // No admitir espacios iniciales y convertir 1ª letra a mayúscula
                 txt = solicitar.value;
-                
+
                 if (txt.length == 0 || txt.substr(txt.length - 1, 1) == ' ') {
                     solicitar.value = txt + te.toUpperCase();
                     return false;
                 }
             }
-            
-            function valida(e){
-            tecla = (document.all) ? e.keyCode : e.which;
 
-            //Tecla de retroceso para borrar, siempre la permite
-            if (tecla==8){
-                return true;
-             }
-        
-             // Patron de entrada, en este caso solo acepta numeros
-             patron =/[0-9]/;
-             tecla_final = String.fromCharCode(tecla);
-            return patron.test(tecla_final);
-        }
+            function valida(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+
+                //Tecla de retroceso para borrar, siempre la permite
+                if (tecla == 8) {
+                    return true;
+                }
+
+                // Patron de entrada, en este caso solo acepta numeros
+                patron = /[0-9]/;
+                tecla_final = String.fromCharCode(tecla);
+                return patron.test(tecla_final);
+            }      
+         
+           
         </script>
         <ui:composition template="./../layout/layout2.xhtml">
 
@@ -61,10 +63,9 @@
                         <h:panelGroup>
                             Agregar por código de producto
 
-                            <p:inputText id="txtAgregarPorCodigoBarras" onkeypress="return valida(event,this)"  value="#{mBVenta.valorCodigoBarras}" >
-                                <p:ajax listener="#{mBVenta.agregarListaVentaDetallePorCodigoBarras()}"  />
-                                <p:ajax listener="#{mBVenta.calcularCostos()}"  />          
-
+                            <p:inputText id="txtAgregarPorCodigoBarras" onkeypress="return valida(event,this)"  value="#{mBVenta.valorCodigoBarras}">
+                                <p:ajax  listener="#{mBVenta.agregarListaVentaDetallePorCodigoBarras()}"  />
+                                <p:ajax  listener="#{mBVenta.calcularCostos()}"  />          
 
                             </p:inputText>
                             <br /><br />
@@ -88,8 +89,8 @@
                             <h:outputText value="#{item.precioVentaUnitarioProducto}"/>
                         </p:column>
                         <p:column headerText="Cantidad" style="text-align: center;">
-                            <p:inputText valueChangeListener="#{mBVenta.calcularCostos()}"  value="#{item.cantidad}" style="text-align: center;" > 
-                                <p:ajax   listener="#{mBVenta.calcularCostos()}"  /></p:inputText>
+                            <p:inputText valueChangeListener="#{mBVenta.calcularCostos()}" onkeypress="return valida(event,this)" value="#{item.cantidad}" style="text-align: center;" > 
+                                <p:ajax listener="#{mBVenta.calcularCostos()}"  /></p:inputText>
                         </p:column>
                         <p:column headerText="Total" style="text-align: center;">
                             Precio de venta= 
