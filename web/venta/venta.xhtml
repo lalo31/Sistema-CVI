@@ -5,95 +5,128 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-          <style type="text/css">
-              
-              #p_inputTextid{
-                  text-align: center;
-              }
+    <style type="text/css">
 
-          </style>
-    
+        #p_inputTextid{
+            text-align: center;
+        }
+
+    </style>
+
     <h:body>
+        <script>
+            function validar(e, solicitar) {
+                // Admitir solo letras
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla == 8)
+                    return true;
+                patron = /[\D\s]/;
+                te = String.fromCharCode(tecla);
+                if (!patron.test(te))
+                    return false;
+                // No admitir espacios iniciales y convertir 1ª letra a mayúscula
+                txt = solicitar.value;
+                
+                if (txt.length == 0 || txt.substr(txt.length - 1, 1) == ' ') {
+                    solicitar.value = txt + te.toUpperCase();
+                    return false;
+                }
+            }
+            
+            function valida(e){
+            tecla = (document.all) ? e.keyCode : e.which;
+
+            //Tecla de retroceso para borrar, siempre la permite
+            if (tecla==8){
+                return true;
+             }
+        
+             // Patron de entrada, en este caso solo acepta numeros
+             patron =/[0-9]/;
+             tecla_final = String.fromCharCode(tecla);
+            return patron.test(tecla_final);
+        }
+        </script>
         <ui:composition template="./../layout/layout2.xhtml">
 
             <ui:define name="top">
             </ui:define>
 
             <ui:define name="content">
-        <h:form id="frmRealizarVentas">
-            <p:growl id="mensajeGeneral" showDetail="true"/>
-            <h1>Venta de Productos</h1>
-            <hr />
-            <p:panelGrid columns="1">
-                <h:panelGroup>
-                    Agregar por código de producto
-                 
-                    <p:inputText id="txtAgregarPorCodigoBarras"  value="#{mBVenta.valorCodigoBarras}" >
-                        <p:ajax event="keyup"  listener="#{mBVenta.agregarListaVentaDetallePorCodigoBarras()}"  />
-                        <p:ajax event="keyup"  listener="#{mBVenta.calcularCostos()}"  />          
-                     
-                                  
-                    </p:inputText>
-                    <br /><br />
-                   
-                </h:panelGroup>
-            </p:panelGrid>
-            <hr />
-            <b>Lista de productos a vender</b>
-            <hr />
-            <p:dataTable id="tablaListaProductosVenta" value="#{mBVenta.listaVentaDetalle}" var="item" style="font-size: 10px;">
-                
-                
-                <p:column headerText="CÓDIGO DE PRODUCTO" style="text-align: center;">
-                    <h:outputText value="#{item.codigoBarrasProducto}"/>
-                    
-                </p:column>
-                <p:column headerText="NOMBRE" style="text-align: left;">
-                    <h:outputText value="#{item.nombreProducto}"/>
-                </p:column>
-                <p:column headerText="PRECIO UNITARIO" style="text-align: center;">
-                    <h:outputText value="#{item.precioVentaUnitarioProducto}"/>
-                </p:column>
-                <p:column headerText="Cantidad" style="text-align: center;">
-                    <p:inputText valueChangeListener="#{mBVenta.calcularCostos()}"  value="#{item.cantidad}" style="text-align: center;" > 
-                        <p:ajax event="keyup"  listener="#{mBVenta.calcularCostos()}"  /></p:inputText>
-                </p:column>
-                <p:column headerText="Total" style="text-align: center;">
-                    Precio de venta= 
-                    <h:outputText value="#{item.totalPrecioVenta}"/>
-                </p:column>
-                <p:column style="text-align: center;">
-                    <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{mBVenta.retirarListaVentaDetalle(item.codigoBarrasProducto)}"/>
-                </p:column>
-            </p:dataTable>
-            <p:panelGrid id="panelFinalVenta" columns="1" style="text-align: right;width: 100%;">
-                <h:panelGroup>
-                    
-                    <br></br>
-                    <br></br>
-                    Precio de venta=
-                    <h:outputText value="#{mBVenta.venta.precioVentaTotal}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;">
-                    <f:convertNumber pattern="#0.00"/>
-                    </h:outputText>
-                    <br></br> 
-                    <br></br>
-                    iva de 16%=
-                    <h:outputText value="#{suma=mBVenta.venta.precioVentaTotal*.16}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;">
-                           <f:convertNumber pattern="#0.00"/>
-                    </h:outputText>
-                    <br></br>
-                    <br></br>
-                    precio total=
-                    <h:outputText value="#{suma+mBVenta.venta.precioVentaTotal}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;" >
-                                      <f:convertNumber pattern="#0.00"/>
-                    </h:outputText>
-                    
-                    <br></br>
-                    <br></br>
-                    <p:commandButton value="Realizar venta" ajax="false" actionListener="#{mBVenta.realizarVenta()}"/>
-                </h:panelGroup>
-            </p:panelGrid>
-        </h:form>
+                <h:form id="frmRealizarVentas">
+                    <p:growl id="mensajeGeneral" showDetail="true"/>
+                    <h1>Venta de Productos</h1>
+                    <hr />
+                    <p:panelGrid columns="1">
+                        <h:panelGroup>
+                            Agregar por código de producto
+
+                            <p:inputText id="txtAgregarPorCodigoBarras" onkeypress="return valida(event,this)"  value="#{mBVenta.valorCodigoBarras}" >
+                                <p:ajax event="keyup"  listener="#{mBVenta.agregarListaVentaDetallePorCodigoBarras()}"  />
+                                <p:ajax event="keyup"  listener="#{mBVenta.calcularCostos()}"  />          
+
+
+                            </p:inputText>
+                            <br /><br />
+
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <hr />
+                    <b>Lista de productos a vender</b>
+                    <hr />
+                    <p:dataTable id="tablaListaProductosVenta" value="#{mBVenta.listaVentaDetalle}" var="item" style="font-size: 10px;">
+
+
+                        <p:column headerText="CÓDIGO DE PRODUCTO" style="text-align: center;">
+                            <h:outputText value="#{item.codigoBarrasProducto}"/>
+
+                        </p:column>
+                        <p:column headerText="NOMBRE" style="text-align: left;">
+                            <h:outputText value="#{item.nombreProducto}"/>
+                        </p:column>
+                        <p:column headerText="PRECIO UNITARIO" style="text-align: center;">
+                            <h:outputText value="#{item.precioVentaUnitarioProducto}"/>
+                        </p:column>
+                        <p:column headerText="Cantidad" style="text-align: center;">
+                            <p:inputText valueChangeListener="#{mBVenta.calcularCostos()}"  value="#{item.cantidad}" style="text-align: center;" > 
+                                <p:ajax event="keyup"  listener="#{mBVenta.calcularCostos()}"  /></p:inputText>
+                        </p:column>
+                        <p:column headerText="Total" style="text-align: center;">
+                            Precio de venta= 
+                            <h:outputText value="#{item.totalPrecioVenta}"/>
+                        </p:column>
+                        <p:column style="text-align: center;">
+                            <p:commandButton value="Retirar de la lista" ajax="true" actionListener="#{mBVenta.retirarListaVentaDetalle(item.codigoBarrasProducto)}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <p:panelGrid id="panelFinalVenta" columns="1" style="text-align: right;width: 100%;">
+                        <h:panelGroup>
+
+                            <br></br>
+                            <br></br>
+                            Precio de venta=
+                            <h:outputText value="#{mBVenta.venta.precioVentaTotal}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;">
+                                <f:convertNumber pattern="#0.00"/>
+                            </h:outputText>
+                            <br></br> 
+                            <br></br>
+                            iva de 16%=
+                            <h:outputText value="#{suma=mBVenta.venta.precioVentaTotal*.16}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;">
+                                <f:convertNumber pattern="#0.00"/>
+                            </h:outputText>
+                            <br></br>
+                            <br></br>
+                            precio total=
+                            <h:outputText value="#{suma+mBVenta.venta.precioVentaTotal}" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);padding: 7px;" >
+                                <f:convertNumber pattern="#0.00"/>
+                            </h:outputText>
+
+                            <br></br>
+                            <br></br>
+                            <p:commandButton value="Realizar venta" ajax="false" actionListener="#{mBVenta.realizarVenta()}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
