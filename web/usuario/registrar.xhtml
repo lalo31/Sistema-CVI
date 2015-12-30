@@ -52,23 +52,23 @@
                 <h:form id="frmRegistrarUsuarios">
                     <p:growl id="msjGral" showDetail="true" sticky="false"/>
                     <h:panelGrid columns="3">
-                        <p:outputLabel value="Nombre" for="txtNombre"/>
+                        <p:outputLabel value="Nombre:" for="txtNombre"/>
                         <p:inputText id="txtNombre" label="Nombre" onkeypress="return validar(event, this)" value="#{mBUsuarios.usuarios.nombre}" required="true" requiredMessage="Nombre requerido">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtNombre"/>
-                        <p:outputLabel value="Apellido paterno" for="txtApellidoPa"/>
+                        <p:outputLabel value="Apellido paterno:" for="txtApellidoPa"/>
                         <p:inputText id="txtApellidoPa" label="Apellido paterno" onkeypress="return validar(event, this)" value="#{mBUsuarios.usuarios.apPaterno}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtApellidoPa"/>
-                        <p:outputLabel value="Apellido Materno" for="txtApellidoMa"/>
+                        <p:outputLabel value="Apellido Materno:" for="txtApellidoMa"/>
                         <p:inputText id="txtApellidoMa" label="Apellido Materno" onkeypress="return validar(event, this)" value="#{mBUsuarios.usuarios.apMaterno}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtApellidoMa"/>
                         <p:outputLabel value="Telefono" for="txtTel"/>
-                        <p:inputText id="txtTel" label="Telefono" onkeypress="return valida(event, this)" value="#{mBUsuarios.usuarios.telefono}" required="true">
+                        <p:inputText id="txtTel" label="Telefono:" onkeypress="return valida(event, this)" value="#{mBUsuarios.usuarios.telefono}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtTel"/>
@@ -81,12 +81,12 @@
                         </p:selectOneMenu>
                         <p:message for="usuarioType"/>
                         
-                        <p:outputLabel value="Nombre de usuario" for="txtNombreUsuario"/>
+                        <p:outputLabel value="Nombre de usuario:" for="txtNombreUsuario"/>
                         <p:inputText id="txtNombreUsuario" label="Nombre de usuario" value="#{mBUsuarios.usuarios.nombreUsuario}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtNombreUsuario"/>
-                        <p:outputLabel value="Contrasena" for="txtContrasena"/>
+                        <p:outputLabel value="Contrasena:" for="txtContrasena"/>
                         <p:password id="txtContrasena" label="Contrasena" value="#{mBUsuarios.usuarios.contrasena}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:password>
