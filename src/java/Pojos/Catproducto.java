@@ -16,8 +16,8 @@ public class Catproducto implements java.io.Serializable {
     private String nombreProducto;
     private Date fechaRegistroProducto;
     private String descripcionProducto;
-    private int categoriaIdCategoria;
-    private int catProveedorNumeroProveedores;
+    private String categoriaIdCategoria;
+    private String catProveedorNumeroProveedores;
     private BigDecimal precioVentaUnitario;
     private int cantidad;
     private int cantidadMin;
@@ -27,7 +27,7 @@ public class Catproducto implements java.io.Serializable {
     public Catproducto() {
     }
 
-    public Catproducto(int numeroCodigo, String nombreProducto, Date fechaRegistroProducto, String descripcionProducto, int categoriaIdCategoria, int catProveedorNumeroProveedores, BigDecimal precioVentaUnitario, int cantidad, int cantidadMin, int cantidadMax) {
+    public Catproducto(int numeroCodigo, String nombreProducto, Date fechaRegistroProducto, String descripcionProducto, String categoriaIdCategoria, String catProveedorNumeroProveedores, BigDecimal precioVentaUnitario, int cantidad, int cantidadMin, int cantidadMax) {
         this.numeroCodigo = numeroCodigo;
         this.nombreProducto = nombreProducto;
         this.fechaRegistroProducto = fechaRegistroProducto;
@@ -40,7 +40,7 @@ public class Catproducto implements java.io.Serializable {
         this.cantidadMax = cantidadMax;
     }
 
-    public Catproducto(int numeroCodigo, String nombreProducto, Date fechaRegistroProducto, String descripcionProducto, int categoriaIdCategoria, int catProveedorNumeroProveedores, BigDecimal precioVentaUnitario, int cantidad, int cantidadMin, int cantidadMax, Set ventadetalles) {
+    public Catproducto(int numeroCodigo, String nombreProducto, Date fechaRegistroProducto, String descripcionProducto, String categoriaIdCategoria, String catProveedorNumeroProveedores, BigDecimal precioVentaUnitario, int cantidad, int cantidadMin, int cantidadMax, Set ventadetalles) {
         this.numeroCodigo = numeroCodigo;
         this.nombreProducto = nombreProducto;
         this.fechaRegistroProducto = fechaRegistroProducto;
@@ -94,19 +94,19 @@ public class Catproducto implements java.io.Serializable {
         this.descripcionProducto = descripcionProducto;
     }
 
-    public int getCategoriaIdCategoria() {
+    public String getCategoriaIdCategoria() {
         return this.categoriaIdCategoria;
     }
 
-    public void setCategoriaIdCategoria(int categoriaIdCategoria) {
+    public void setCategoriaIdCategoria(String categoriaIdCategoria) {
         this.categoriaIdCategoria = categoriaIdCategoria;
     }
 
-    public int getCatProveedorNumeroProveedores() {
+    public String getCatProveedorNumeroProveedores() {
         return this.catProveedorNumeroProveedores;
     }
 
-    public void setCatProveedorNumeroProveedores(int catProveedorNumeroProveedores) {
+    public void setCatProveedorNumeroProveedores(String catProveedorNumeroProveedores) {
         this.catProveedorNumeroProveedores = catProveedorNumeroProveedores;
     }
 
