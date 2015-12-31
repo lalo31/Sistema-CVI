@@ -52,11 +52,12 @@ public class DaoCatProductos implements InterfaceCatProductos {
 
     @Override
     public Catproducto getByCodigoProducto(Session session, Integer numeroCodigo) throws Exception {
+       
         String hql = "from Catproducto where numeroCodigo=:numeroCodigo";
         Query query = session.createQuery(hql);
         query.setParameter("numeroCodigo", numeroCodigo);
-        Catproducto productos = (Catproducto) query.uniqueResult();
-        return productos;
+       // Catproducto productos = (Catproducto) query.uniqueResult();
+        return (Catproducto) query.uniqueResult();
     }
 
     @Override
@@ -73,5 +74,13 @@ public class DaoCatProductos implements InterfaceCatProductos {
         List<Catproducto> listaProductos = (List<Catproducto>) query.list();
         return listaProductos;
     }
+
+    public Catproducto getAll(Session session) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+     
+     
     
 }

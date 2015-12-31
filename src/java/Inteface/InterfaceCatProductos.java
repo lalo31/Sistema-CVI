@@ -22,4 +22,4 @@ public interface InterfaceCatProductos {
     public Catproducto getByCodigoProducto(Session session, Integer numeroCodigo)throws Exception;
     public boolean deleteProducto(Session session, Catproducto productos) throws Exception;
     public List<Catproducto> getAllProductosByStockMinimo(Session session) throws Exception;
-}
+    }

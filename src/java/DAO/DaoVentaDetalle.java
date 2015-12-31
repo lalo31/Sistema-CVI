@@ -23,4 +23,6 @@ public class DaoVentaDetalle implements InterfaceVentaDetalle {
         return true;
     }
     
+ 
+    
 }
