@@ -9,7 +9,7 @@
     <body>
 
         <ui:composition template="./../layout/layout2.xhtml">
-
+        <h:outputScript library="js" name="jsControles.js"/>
             <ui:define name="top">
 
             </ui:define>
@@ -56,7 +56,7 @@
                     <p:dialog header="Datos del producto" widgetVar="dialogDetalle" modal="true" showEffect="explode" hideEffect="bounce">
                         <h:panelGrid id="panelDetalle" columns="3">
                             <p:outputLabel value="Código de producto" for="txtCodigoProducto"/>
-                            <p:inputText id="txtCodigoProducto" label="Codigo del Producto" value="#{mBCatProductos.productos.numeroCodigo}" required="true" requiredMessage="Codigo de producto requerido">
+                            <p:inputText id="txtCodigoProducto" label="Codigo del Producto" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.numeroCodigo}" required="true" requiredMessage="Codigo de producto requerido">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtCodigoProducto"/>
@@ -92,25 +92,25 @@
                             <p:message for="console"/> 
                            
                             <p:outputLabel value="Cantidad" for="txtCantidad"/>
-                            <p:inputText id="txtCantidad" label="Cantidad" value="#{mBCatProductos.productos.cantidad}" required="true">
+                            <p:inputText id="txtCantidad" label="Cantidad" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.cantidad}" required="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtCantidad"/>
                             
                             <p:outputLabel value="Stock Mínimo" for="txtCantidad2"/>
-                            <p:inputText id="txtCantidad2" label="Stock Minimo" value="#{mBCatProductos.productos.cantidadMin}" required="true">
+                            <p:inputText id="txtCantidad2" label="Stock Minimo" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.cantidadMin}" required="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtCantidad2"/>
                             
                             <p:outputLabel value="Stock Máximo" for="txtCantidad3"/>
-                            <p:inputText id="txtCantidad3" label="Stock Maximo" value="#{mBCatProductos.productos.cantidadMax}" required="true">
+                            <p:inputText id="txtCantidad3" label="Stock Maximo" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.cantidadMax}" required="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtCantidad3"/>
                             
                             <p:outputLabel value="Precio Unitario" for="txtPrecio"/>
-                            <p:inputText id="txtPrecio" label="Precio Unitario" value="#{mBCatProductos.productos.precioVentaUnitario}" required="true">
+                            <p:inputText id="txtPrecio" label="Precio Unitario" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.precioVentaUnitario}" required="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtPrecio"/>

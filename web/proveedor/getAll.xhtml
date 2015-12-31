@@ -9,9 +9,9 @@
     <body>
 
         <ui:composition template="./../layout/layout2.xhtml">
-
+            <h:outputScript library="js" name="jsControles.js"/>
             <ui:define name="top">
-                
+
             </ui:define>
 
             <ui:define name="content">
@@ -46,93 +46,93 @@
                             <h:outputText value="#{item.categoriaIdCategoria}"/>
                         </p:column>
                     </p:dataTable>
-                   
+
                     <p:dialog header="Datos del proveedor" widgetVar="dialogDetalle" modal="true" showEffect="explode" hideEffect="bounce">
                         <h:panelGrid id="panelDetalle" columns="3">
-                            
-                            
+
+
                             <p:outputLabel value="RFC del proveedor" for="txtRfcProveedor"/>
-                            <p:inputText id="txtRfcProveedor" label="RFC del proveedor" value="#{mBCatProveedores.proveedores.rfcProveedores}" required="true" requiredMessage="RFC requerido">
+                            <p:inputText id="txtRfcProveedor" label="RFC del proveedor" onkeyup="this.value = this.value.toUpperCase();" value="#{mBCatProveedores.proveedores.rfcProveedores}" required="true" requiredMessage="RFC requerido">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtRfcProveedor"/>
-                            
-                            
+
+
                             <p:outputLabel value="Nombre del proveedor" for="txtNombreProveedor"/>
-                            <p:inputText id="txtNombreProveedor" label="Nombre del Proveedor" value="#{mBCatProveedores.proveedores.nombreProveedores}" required="true">
+                            <p:inputText id="txtNombreProveedor" label="Nombre del Proveedor" onkeypress="return validar(event, this)" value="#{mBCatProveedores.proveedores.nombreProveedores}" required="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtNombreProveedor"/>
-                            
-                            
+
+
                             <p:outputLabel value="Nombre de la distribuidora" for="txtNombreDistribuidora"/>
-                            <p:inputText id="txtNombreDistribuidora" label="Nombre de la distribuidor" value="#{mBCatProveedores.proveedores.nombreDistribuidora}" required="true">
+                            <p:inputText id="txtNombreDistribuidora" label="Nombre de la distribuidor" onkeypress="return validar(event, this)" value="#{mBCatProveedores.proveedores.nombreDistribuidora}" required="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtNombreDistribuidora"/>
-                            
-                            
+
+
                             <p:outputLabel value="Teléfono del proveedor" for="txtTelProveedor"/>
-                            <p:inputText id="txtTelProveedor" label="Telefono del proveedor" value="#{mBCatProveedores.proveedores.telefono}" required="true">
+                            <p:inputText id="txtTelProveedor" label="Telefono del proveedor" onkeypress="return valida(event,this)" value="#{mBCatProveedores.proveedores.telefono}" required="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtTelProveedor"/>
-                            
-                            
+
+
                             <p:outputLabel value="Correo del proveedor" for="txtCorreoProveedor"/>
                             <p:inputText id="txtCorreoProveedor" label="Correo del proveedor" value="#{mBCatProveedores.proveedores.correoProveedor}" required="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtCorreoProveedor"/>
-                            
+
                             <p:outputLabel for="console" value="Categoría del Proveedor"/>
-                        <p:selectOneMenu id="console" value="#{mBCatProveedores.proveedores.categoriaIdCategoria}" style="width:175px">
-                            <f:selectItem itemLabel="Selecciona Categoría" itemValue="" />
-                            <f:selectItem itemLabel="1.- Electricidad" itemValue="1" />
-                            <f:selectItem itemLabel="2.- Plomería" itemValue="2" />
-                            <f:selectItem itemLabel="3.- Construcción" itemValue="3" />
-                            <f:selectItem itemLabel="4.- Jardinería" itemValue="4" />
-                        </p:selectOneMenu>
-                        <p:message for="console"/> 
-<!--                            <p:outputLabel value="Categoría del proveedor" for="txtCategoriaProveedor"/>
-                            <p:inputText id="txtCategoriaProveedor" label="Categoria del proveedor" value="#{mBCatProveedores.proveedores.categoriaIdCategoria}" required="true">
-                                <f:validator validatorId="validatorVacio"/>
-                            </p:inputText>
-                            <h:panelGrid columns="4">
-                            <p:outputLabel value="1.-Electricidad"/>
-                        
-                            <p:outputLabel value="2.-Plomería"/>
-                         
-                            <p:outputLabel value="3.-Construcción"/>
-                        
-                            <p:outputLabel value="4.-Jardinería"/>
-                            <p:message for="txtCategoriaProveedor"/>
-                            </h:panelGrid>     -->
-                            
+                            <p:selectOneMenu id="console" value="#{mBCatProveedores.proveedores.categoriaIdCategoria}" style="width:175px">
+                                <f:selectItem itemLabel="Selecciona Categoría" itemValue="" />
+                                <f:selectItem itemLabel="1.- Electricidad" itemValue="1" />
+                                <f:selectItem itemLabel="2.- Plomería" itemValue="2" />
+                                <f:selectItem itemLabel="3.- Construcción" itemValue="3" />
+                                <f:selectItem itemLabel="4.- Jardinería" itemValue="4" />
+                            </p:selectOneMenu>
+                            <p:message for="console"/> 
+                            <!--                            <p:outputLabel value="Categoría del proveedor" for="txtCategoriaProveedor"/>
+                                                        <p:inputText id="txtCategoriaProveedor" label="Categoria del proveedor" value="#{mBCatProveedores.proveedores.categoriaIdCategoria}" required="true">
+                                                            <f:validator validatorId="validatorVacio"/>
+                                                        </p:inputText>
+                                                        <h:panelGrid columns="4">
+                                                        <p:outputLabel value="1.-Electricidad"/>
+                                                    
+                                                        <p:outputLabel value="2.-Plomería"/>
+                                                     
+                                                        <p:outputLabel value="3.-Construcción"/>
+                                                    
+                                                        <p:outputLabel value="4.-Jardinería"/>
+                                                        <p:message for="txtCategoriaProveedor"/>
+                                                        </h:panelGrid>     -->
+
                             <h:panelGrid columns="1">
-                            <p:commandButton value="Eliminar Proveedor" actionListener="#{mBCatProveedores.deleteProveedor()}" update="frmListaProveedores">
-                                <p:confirm header="Confirmación" message="¿Estas seguro de borrar al proveedor?" icon="ui-icon-alert" />
-                            </p:commandButton>
-                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                            </p:confirmDialog>
-                            
-                            <p:commandButton value="Modificar Proveedor" actionListener="#{mBCatProveedores.update()}" update="frmListaProveedores">
-                            <p:confirm header="Confirmación" message="¿Estas seguro de modificar al proveedor?" icon="ui-icon-alert" />
-                            </p:commandButton>
-                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                            </p:confirmDialog>
-                                </h:panelGrid>
-                    </h:panelGrid>
+                                <p:commandButton value="Eliminar Proveedor" actionListener="#{mBCatProveedores.deleteProveedor()}" update="frmListaProveedores">
+                                    <p:confirm header="Confirmación" message="¿Estas seguro de borrar al proveedor?" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+
+                                <p:commandButton value="Modificar Proveedor" actionListener="#{mBCatProveedores.update()}" update="frmListaProveedores">
+                                    <p:confirm header="Confirmación" message="¿Estas seguro de modificar al proveedor?" icon="ui-icon-alert" />
+                                </p:commandButton>
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                            </h:panelGrid>
+                        </h:panelGrid>
                     </p:dialog>
                 </h:form>
             </ui:define>
 
             <ui:define name="">
-                
+
             </ui:define>
 
         </ui:composition>
