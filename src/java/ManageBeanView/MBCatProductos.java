@@ -213,6 +213,40 @@ public class MBCatProductos {
             }
         }
     }
+    
+     public List<Catproducto> getAllbyStockMinimo(){
+        this.session = null;
+        this.transaction = null;
+        try
+        {
+            DaoCatProductos daoProductos = new DaoCatProductos();
+            
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = this.session.beginTransaction();
+            
+            this.listaProductos = daoProductos.getAllProductosByStockMinimo(this.session);
+           
+            this.transaction.commit();
+            
+            return this.listaProductos;
+        }
+        catch(Exception ex)
+        {
+            if(this.transaction != null)
+            {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", " " +ex.getMessage()));
+            return null;
+        }
+        finally
+        {
+            if(this.session != null)
+            {
+                this.session.close();
+            }
+        }
+    }
 
     public Catproducto getProductos() {
         return productos;

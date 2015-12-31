@@ -210,10 +210,14 @@ public class MBVenta {
 
                     RequestContext.getCurrentInstance().update("frmRealizarVentas:tablaListaProductosVenta");
                     RequestContext.getCurrentInstance().update("frmRealizarVentas:panelFinalVenta");
-                } else {
+                }
+                else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Insuficiente en stock"));
 
                 }
+//                if (item.getCantidad() > this.producto.getCantidad()) {
+//                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Insuficiente en stock"));
+//                }
             }
         } catch (Exception ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error no se puede realizar la venta \n no contienes los suficientes productos", ex.getMessage()));
@@ -243,6 +247,7 @@ public class MBVenta {
 
                 daoVentaDetalle.registrar(this.session, item);
             }
+            
 
             this.transaction.commit();
 
@@ -263,6 +268,10 @@ public class MBVenta {
 
         }
 
+    }
+    
+    public void removerDelStock(){
+        
     }
 
     public Catproducto getProducto() {

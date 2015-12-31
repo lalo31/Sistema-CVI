@@ -66,7 +66,7 @@ public class MBSLogin implements Serializable {
                 {
                     HttpSession httpSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                     httpSession.setAttribute("usuario", this.usuario);
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido: Admin", "Al SCVI "));
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido: Gerente", "Al SCVI "));
                     
                     return "/venta/venta";
                 }
