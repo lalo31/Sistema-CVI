@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../layout/layout2.xhtml">
+
+            <ui:define name="top">
+
+            </ui:define>
+
+            <ui:define name="content">
+                <h2>Reporte de Productos a Proveer</h2>
+                <hr />
+                <h:form id="frmListaProducto">
+                    <p:growl id="msjGral" showDetail="true" sticky="false"/>
+                    <p:dataTable id="tablaProducto" var="item" value="#{mBCatProductos.allbyStockMinimo}" paginator="true" rows="10" selection="#{mBCatProductos.productos}" selectionMode="single" rowKey="#{item.numeroCodigo}">
+
+                        <f:facet name="header">
+                            Lista de Productos
+                        </f:facet>
+                        <p:column headerText="Código de producto" filterBy="#{item.numeroCodigo}">
+                            <h:outputText value="#{item.numeroCodigo}"/>
+                        </p:column>
+                        <p:column headerText="Nombre del producto" filterBy="#{item.nombreProducto}">
+                            <h:outputText value="#{item.nombreProducto}"/>
+                        </p:column>
+                        <p:column headerText="Marca del producto">
+                            <h:outputText value="#{item.catProveedorNumeroProveedores}"/>
+                        </p:column>
+                        <p:column headerText="Categoría del producto">
+                            <h:outputText value="#{item.categoriaIdCategoria}"/>
+                        </p:column>
+                        <p:column headerText="Producto en stock">
+                            <h:outputText value="#{item.cantidad}"/>
+                        </p:column>
+                        <p:column headerText="Stock Mínimo">
+                            <h:outputText value="#{item.cantidadMin}"/>
+                        </p:column>
+                        <p:column headerText="Stock Máximo">
+                            <h:outputText value="#{item.cantidadMax}"/>
+                        </p:column>
+                        <p:column headerText="Precio unitario">
+                            <h:outputText value="#{item.precioVentaUnitario}"/>
+                        </p:column>
+                        <p:column headerText="Descripción del producto">
+                            <h:outputText value="#{item.descripcionProducto}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <h:commandLink value="Descargar Reporte">                
+                        <p:graphicImage name="/images/pdf.png" width="24"/>                
+                        <p:dataExporter type="pdf" target="tablaProducto" fileName="pedido" />            
+                    </h:commandLink>                      
+                </h:form>
+            </ui:define>
+
+            <ui:define name="">
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

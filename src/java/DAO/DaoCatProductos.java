@@ -66,4 +66,12 @@ public class DaoCatProductos implements InterfaceCatProductos {
         return true;
     }
     
+     public List<Catproducto> getAllProductosByStockMinimo(Session session) throws Exception {
+        String hql = "from Catproducto where cantidad<=cantidadMin";
+        Query query = session.createQuery(hql);
+        
+        List<Catproducto> listaProductos = (List<Catproducto>) query.list();
+        return listaProductos;
+    }
+    
 }
