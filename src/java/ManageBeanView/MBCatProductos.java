@@ -57,16 +57,16 @@ public class MBCatProductos {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "El producto se encuentra registrado"));
                 return ;
             }
-            if(this.productos.getCategoriaIdCategoria()<=0 || this.productos.getCategoriaIdCategoria() >4 )
-            {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
-                return ;
-            }
-            if(this.productos.getCatProveedorNumeroProveedores()<=0 || this.productos.getCatProveedorNumeroProveedores() >4 )
-            {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Marca Inválida"));
-                return ;
-            }
+//            if(this.productos.getCategoriaIdCategoria()<=0 || this.productos.getCategoriaIdCategoria() >4 )
+//            {
+//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
+//                return ;
+//            }
+//            if(this.productos.getCatProveedorNumeroProveedores()<=0 || this.productos.getCatProveedorNumeroProveedores() >4 )
+//            {
+//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Marca Inválida"));
+//                return ;
+//            }
             daoProd.registrar(this.session, this.productos);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se realizo exitosamente"));
             
@@ -149,16 +149,16 @@ public class MBCatProductos {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "El producto se encuentra registrado"));
                 return ;
             }*/
-            if(this.productos.getCategoriaIdCategoria()<=0 || this.productos.getCategoriaIdCategoria() >4 )
-            {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
-                return ;
-            }
-            if(this.productos.getCatProveedorNumeroProveedores()<=0 || this.productos.getCatProveedorNumeroProveedores() >4 )
-            {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Marca Inválida"));
-                return ;
-            }
+//            if(this.productos.getCategoriaIdCategoria()<=0 || this.productos.getCategoriaIdCategoria() >4 )
+//            {
+//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
+//                return ;
+//            }
+//            if(this.productos.getCatProveedorNumeroProveedores()<=0 || this.productos.getCatProveedorNumeroProveedores() >4 )
+//            {
+//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Marca Inválida"));
+//                return ;
+//            }
             daoProd.update(this.session, this.productos);
             this.transaction.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se actualizo exitosamente"));
