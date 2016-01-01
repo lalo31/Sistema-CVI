@@ -20,13 +20,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.primefaces.context.RequestContext;
 
-@ManagedBean
+
 @ViewScoped
+@Named(value = "MBVenta")
 public class MBVenta {
 
     /**
@@ -248,6 +250,7 @@ public class MBVenta {
                 daoVentaDetalle.registrar(this.session, item);
             }
             
+            this.producto=daoProducto.getAll(session);
 
             this.transaction.commit();
 
