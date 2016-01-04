@@ -8,7 +8,19 @@ function limpiarFormulario(idFormulario) {
     document.getElementById(idFormulario).reset();
 }
 
-
+//function limpiaProveedor(frmRegistrarProveedores){
+//    document.getElementById(frmRegistrarProveedores);
+//}
+function validaRFC(e, solicitar) {
+    // Admitir solo letras
+    tecla = (document.all) ? e.keyCode : e.which;
+    if (tecla == 8)
+        return true;
+    patron = /[a-zA-Z0-9]/;
+    te = String.fromCharCode(tecla);
+    if (!patron.test(te))
+        return false;
+}
 function validar(e, solicitar) {
     // Admitir solo letras
     tecla = (document.all) ? e.keyCode : e.which;
@@ -40,3 +52,4 @@ function valida(e) {
     tecla_final = String.fromCharCode(tecla);
     return patron.test(tecla_final);
 }
+

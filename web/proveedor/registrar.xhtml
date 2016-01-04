@@ -21,7 +21,7 @@
 
 
                         <p:outputLabel value="RFC del proveedor" for="txtRfcProveedor"/>
-                        <p:inputText id="txtRfcProveedor" label="RFC del proveedor" onkeyup="this.value = this.value.toUpperCase();" value="#{mBCatProveedores.proveedores.rfcProveedores}" required="true" requiredMessage="RFC requerido">
+                        <p:inputText id="txtRfcProveedor" label="RFC del proveedor" onkeypress="return validaRFC(event,this)" onkeyup="this.value = this.value.toUpperCase();" value="#{mBCatProveedores.proveedores.rfcProveedores}" required="true" requiredMessage="RFC requerido">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtRfcProveedor"/>
