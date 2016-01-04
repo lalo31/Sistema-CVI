@@ -122,4 +122,35 @@ public class MBPedido {
         this.listaPedido = listaPedido;
     }
     
+    public void deletePedido() throws Exception{
+        this.session = null;
+        this.transaction = null;
+        
+        try
+        {
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            this.transaction = session.beginTransaction();
+            DaoPedido daoPed = new DaoPedido();
+            daoPed.deletePedido(this.session, this.pedido);
+            this.transaction.commit();
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se eliminó exitosamente"));
+        }
+        catch(Exception ex)
+        {
+            if(this.transaction != null)
+            {
+                this.transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error fatal:", " " +ex.getMessage()));
+        }
+        finally
+        {
+            if(this.session != null)
+            {
+                this.session.close();
+            }
+        }
+    }
+    
 }

@@ -20,7 +20,7 @@
                 <h:form id="frmListaPedido">
                     <p:growl id="msjGral" showDetail="true" sticky="false"/>
                     <p:dataTable id="tablaPedido" var="item" value="#{mBPedido.all}" paginator="true" rows="10" selection="#{mBPedido.pedido}" selectionMode="single" rowKey="#{item.numeroPedido}">
-                          
+                     <p:ajax event="rowSelect" update=":frmListaPedido:panelDetalle" oncomplete="dialogDetalle.show()"/>     
                         <f:facet name="header">
                             Lista de pedidos
                         
@@ -48,6 +48,69 @@
                             <h:outputText value="#{item.precioAprox}"/>
                         </p:column>
                     </p:dataTable>
+                    
+                    <p:dialog header="Datos del Pedido" widgetVar="dialogDetalle" modal="true" showEffect="explode" hideEffect="bounce">
+                        <h:panelGrid id="panelDetalle" columns="3">
+                            <p:outputLabel value="Numero de pedido" for="txtNumero"/>
+                            <p:inputText id="txtNumero" label="Numero del pedido" onkeypress="return validar(event, this)" value="#{mBPedido.pedido.numeroPedido}" required="true" requiredMessage="Numero Requerido" disabled="true">
+                                <f:validator validatorId="validatorVacio"/>
+                            </p:inputText>
+                            <p:message for="txtNumero"/>
+                            <p:outputLabel value="Fecha Pedido" for="txtFechaPedido"/>
+                            <p:inputText id="txtFechaPedido" label="Fecha Pedido" onkeypress="return validar(event, this)" value="#{mBPedido.pedido.fechaPedido}" required="true" disabled="true">
+                                <f:validator validatorId="validatorVacio"/>
+                            </p:inputText>
+                            <p:message for="txtFechaPedido"/>
+                           
+                            <p:outputLabel for="categoriaType" value="Tipo de Proveedor"/>
+                            <p:selectOneMenu id="categoriaType" value="#{mBPedido.pedido.catProveedorNumeroProveedores}" style="width:175px" required="true" disabled="true">
+                                <f:selectItem itemLabel="Selecciona" itemValue="" />
+                                <f:selectItem itemLabel="1.- Electricidad" itemValue="1" />
+                                <f:selectItem itemLabel="2.- Plomería" itemValue="2" />
+                                <f:selectItem itemLabel="3.- Construcción" itemValue="3" />
+                                <f:selectItem itemLabel="4.- Jardinería" itemValue="4" />                            
+                                </p:selectOneMenu>                            
+                            <p:message for="categoriaType"/>
+
+                            <p:outputLabel for="proveedorType" value="Tipo de Categoria"/>
+                            <p:selectOneMenu id="proveedorType" value="#{mBPedido.pedido.categoriaIdCategoria}" style="width:175px" required="true" disabled="true">
+                                <f:selectItem itemLabel="Selecciona" itemValue="" />
+                                <f:selectItem itemLabel="1.- Truper" itemValue="1" />
+                                <f:selectItem itemLabel="2.- Dos Valles" itemValue="2" />
+                               <f:selectItem itemLabel="3.- Ruipasa" itemValue="3" />
+                                <f:selectItem itemLabel="4.- Prisa" itemValue="4" />                           
+                                </p:selectOneMenu>                            
+                            <p:message for="proveedorType"/>
+
+                            <p:outputLabel value="Codigo Producto" for="txtProducto"/>
+                            <p:inputText id="txtProducto" label="Codigo Producto" value="#{mBPedido.pedido.catProductoIdProducto}" required="true" disabled="true">
+                                <f:validator validatorId="validatorVacio"/>
+                            </p:inputText>
+                            <p:message for="txtProducto"/>
+
+                            <p:outputLabel value="Cantidad" for="txtCantidad"/>
+                            <p:inputText id="txtCantidad" label="Cantidad" value="#{mBPedido.pedido.cantidadRequerida}" required="true" disabled="true">
+                                <f:validator validatorId="validatorVacio"/>
+                            </p:inputText>
+                            <p:message for="txtCantidad"/>
+
+                            <p:outputLabel value="Precio" for="txtPrecio"/>
+                            <p:inputText id="txtPrecio" label="Precio" value="#{mBPedido.pedido.precioAprox}" required="true" disabled="true">
+                            </p:inputText>
+                            <p:message for="txtPrecio"/>
+
+                            <p:commandButton value="Eliminar Pedido" actionListener="#{mBPedido.deletePedido()}" update="frmListaPedido">
+                                <p:confirm header="Confirmación" message="¿Estas seguro de borrar el pedido?" icon="ui-icon-alert" />
+                            </p:commandButton>       
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                    
+                        </h:panelGrid>
+                        </p:dialog>
+                    
+                    
                     <h:commandLink value="Descargar Pedido">                
                                <p:graphicImage name="/images/pdf.png" width="24"/>                
                                <p:dataExporter type="pdf" target="tablaPedido" fileName="pedido" />            
