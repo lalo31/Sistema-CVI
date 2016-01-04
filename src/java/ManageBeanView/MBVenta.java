@@ -220,7 +220,7 @@ public class MBVenta {
 //                }
             }
         } catch (Exception ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error no se puede realizar la venta \n no contienes los suficientes productos", ex.getMessage()));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "error","Ingrese el codigo nuevamente "));
         }
     }
 
