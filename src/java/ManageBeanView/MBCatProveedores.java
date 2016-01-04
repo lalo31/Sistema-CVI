@@ -43,13 +43,13 @@ public class MBCatProveedores {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "El proveedor se encuentra registrado"));
                 return ;
             }
-            if(this.proveedores.getCategoriaIdCategoria()<=0 || this.proveedores.getCategoriaIdCategoria() >4 )
-            {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
-                return ;
-            }
+//            if(this.proveedores.getCategoriaIdCategoria()<=0 || this.proveedores.getCategoriaIdCategoria() >4 )
+//            {
+//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
+//                return ;
+//            }
             daoProv.registrar(this.session, this.proveedores);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se realizo exitosamente"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro del proveedor se realizo exitosamente"));
             
             this.transaction.commit();         
             this.proveedores = new Catproveedor();
@@ -119,11 +119,11 @@ public class MBCatProveedores {
 //                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "El proveedor se encuentra registrado"));
 //                return ;
 //            }      
-            if(this.proveedores.getCategoriaIdCategoria()<=0 || this.proveedores.getCategoriaIdCategoria() >4 )
-            {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
-                return ;
-            }
+//            if(this.proveedores.getCategoriaIdCategoria()<=0 || this.proveedores.getCategoriaIdCategoria() >4 )
+//            {
+//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
+//                return ;
+//            }
             daoProv.update(this.session, this.proveedores);
             this.transaction.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se actualizo exitosamente"));

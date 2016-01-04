@@ -72,7 +72,7 @@
                             <p:message for="txtDescripcionProducto"/>
                           
                             <p:outputLabel for="console1" value="Marca del Producto"/>
-                            <p:selectOneMenu id="console1" value="#{mBCatProductos.productos.catProveedorNumeroProveedores}" style="width:175px">
+                            <p:selectOneMenu id="console1" value="#{mBCatProductos.productos.catProveedorNumeroProveedores}" style="width:175px" required="true">
                                 <f:selectItem itemLabel="Selecciona Marca" itemValue="" />
                                 <f:selectItem itemLabel="Truper" itemValue="Truper" />
                                 <f:selectItem itemLabel="Dos Valles" itemValue="Dos Valles" />
@@ -82,7 +82,7 @@
                             <p:message for="console1"/> 
                            
                             <p:outputLabel for="console" value="Categoría del Producto"/>
-                            <p:selectOneMenu id="console" value="#{mBCatProductos.productos.categoriaIdCategoria}" style="width:175px">
+                            <p:selectOneMenu id="console" value="#{mBCatProductos.productos.categoriaIdCategoria}" style="width:175px" required="true">
                                 <f:selectItem itemLabel="Selecciona Categoría" itemValue="" />
                                 <f:selectItem itemLabel="Electricidad" itemValue="Electricidad" />
                                 <f:selectItem itemLabel="Plomería" itemValue="Plomeria" />
