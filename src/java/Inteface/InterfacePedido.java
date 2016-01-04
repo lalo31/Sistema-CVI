@@ -17,4 +17,5 @@ import org.hibernate.Session;
 public interface InterfacePedido {
     public boolean registrar(Session session, Pedido pedido) throws Exception;
     public List<Pedido> getAllPedido(Session session) throws Exception;
+    public boolean deletePedido(Session session, Pedido pedido) throws Exception;
 }
