@@ -86,29 +86,14 @@
                             <p:message for="txtCorreoProveedor"/>
 
                             <p:outputLabel for="console" value="Categoría del Proveedor"/>
-                            <p:selectOneMenu id="console" value="#{mBCatProveedores.proveedores.categoriaIdCategoria}" style="width:175px">
+                            <p:selectOneMenu id="console" value="#{mBCatProveedores.proveedores.categoriaIdCategoria}" style="width:175px" required="true">
                                 <f:selectItem itemLabel="Selecciona Categoría" itemValue="" />
-                                <f:selectItem itemLabel="1.- Electricidad" itemValue="1" />
-                                <f:selectItem itemLabel="2.- Plomería" itemValue="2" />
-                                <f:selectItem itemLabel="3.- Construcción" itemValue="3" />
-                                <f:selectItem itemLabel="4.- Jardinería" itemValue="4" />
+                                <f:selectItem itemLabel="Electricidad" itemValue="Electricidad" />
+                                <f:selectItem itemLabel="Plomería" itemValue="Plomería" />
+                                <f:selectItem itemLabel="Construcción" itemValue="Coonstrucción" />
+                                <f:selectItem itemLabel="Jardinería" itemValue="Jardinería" />
                             </p:selectOneMenu>
                             <p:message for="console"/> 
-                            <!--                            <p:outputLabel value="Categoría del proveedor" for="txtCategoriaProveedor"/>
-                                                        <p:inputText id="txtCategoriaProveedor" label="Categoria del proveedor" value="#{mBCatProveedores.proveedores.categoriaIdCategoria}" required="true">
-                                                            <f:validator validatorId="validatorVacio"/>
-                                                        </p:inputText>
-                                                        <h:panelGrid columns="4">
-                                                        <p:outputLabel value="1.-Electricidad"/>
-                                                    
-                                                        <p:outputLabel value="2.-Plomería"/>
-                                                     
-                                                        <p:outputLabel value="3.-Construcción"/>
-                                                    
-                                                        <p:outputLabel value="4.-Jardinería"/>
-                                                        <p:message for="txtCategoriaProveedor"/>
-                                                        </h:panelGrid>     -->
-
                             <h:panelGrid columns="1">
                                 <p:commandButton value="Eliminar Proveedor" actionListener="#{mBCatProveedores.deleteProveedor()}" update="frmListaProveedores">
                                     <p:confirm header="Confirmación" message="¿Estas seguro de borrar al proveedor?" icon="ui-icon-alert" />
@@ -124,7 +109,7 @@
                                 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                                     <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                     <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                </p:confirmDialog>
+                                </p:confirmDialog>                              
                             </h:panelGrid>
                         </h:panelGrid>
                     </p:dialog>

@@ -15,20 +15,20 @@ public class Catproveedor  implements java.io.Serializable {
      private String nombreDistribuidora;
      private int telefono;
      private String correoProveedor;
-     private int categoriaIdCategoria;
-     private int console;
+     private String categoriaIdCategoria;
+//     private int console;
 
     public Catproveedor() {
     }
 
-    public Catproveedor(String rfcProveedores, String nombreProveedores, String nombreDistribuidora, int telefono, String correoProveedor, int categoriaIdCategoria) {
+    public Catproveedor(String rfcProveedores, String nombreProveedores, String nombreDistribuidora, int telefono, String correoProveedor, String categoriaIdCategoria) {
        this.rfcProveedores = rfcProveedores;
        this.nombreProveedores = nombreProveedores;
        this.nombreDistribuidora = nombreDistribuidora;
        this.telefono = telefono;
        this.correoProveedor = correoProveedor;
        this.categoriaIdCategoria = categoriaIdCategoria;
-       this.console= console;
+//       this.console= console;
     }
    
     public Integer getNumeroProveedores() {
@@ -73,20 +73,20 @@ public class Catproveedor  implements java.io.Serializable {
     public void setCorreoProveedor(String correoProveedor) {
         this.correoProveedor = correoProveedor;
     }
-    public int getCategoriaIdCategoria() {
+    public String getCategoriaIdCategoria() {
         return this.categoriaIdCategoria;
     }
     
-    public void setCategoriaIdCategoria(int categoriaIdCategoria) {
+    public void setCategoriaIdCategoria(String categoriaIdCategoria) {
         this.categoriaIdCategoria = categoriaIdCategoria;
     }
-    public int getConsole() {
-        return console;
-    }
- 
-    public void setConsole(int console) {
-        this.console = console;
-    }
+//    public int getConsole() {
+//        return console;
+//    }
+// 
+//    public void setConsole(int console) {
+//        this.console = console;
+//    }
 
 
 

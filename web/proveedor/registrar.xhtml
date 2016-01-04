@@ -56,12 +56,12 @@
                         <p:message for="txtCorreoProveedor"/>     
 
                         <p:outputLabel for="console" value="Categoría del Proveedor"/>
-                        <p:selectOneMenu id="console" value="#{mBCatProveedores.proveedores.categoriaIdCategoria}" style="width:175px">
+                        <p:selectOneMenu id="console" value="#{mBCatProveedores.proveedores.categoriaIdCategoria}" style="width:175px" required="true">
                             <f:selectItem itemLabel="Selecciona Categoría" itemValue="" />
-                            <f:selectItem itemLabel="1.- Electricidad" itemValue="1" />
-                            <f:selectItem itemLabel="2.- Plomería" itemValue="2" />
-                            <f:selectItem itemLabel="3.- Construcción" itemValue="3" />
-                            <f:selectItem itemLabel="4.- Jardinería" itemValue="4" />
+                            <f:selectItem itemLabel="Electricidad" itemValue="Electricidad" />
+                            <f:selectItem itemLabel="Plomería" itemValue="Plomería" />
+                            <f:selectItem itemLabel="Construcción" itemValue="Construcción" />
+                            <f:selectItem itemLabel="Jardinería" itemValue="Jardinería" />
                         </p:selectOneMenu>
                         <p:message for="console"/> 
                         <p:commandButton value="Registrar Proveedor" actionListener="#{mBCatProveedores.registrar()}" update="frmRegistrarProveedores"/>

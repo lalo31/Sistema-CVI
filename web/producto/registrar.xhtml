@@ -26,7 +26,7 @@
                         </p:inputText>
                         <p:message for="txtCodigoProducto"/>
                         <p:outputLabel value="Nombre del producto" for="txtNombreProducto"/>
-                        <p:inputText id="txtNombreProducto" label="Nombre del Producto" value="#{mBCatProductos.productos.nombreProducto}" required="true">
+                        <p:inputText id="txtNombreProducto" label="Nombre del Producto" onkeypress="return validar(event, this)" value="#{mBCatProductos.productos.nombreProducto}" required="true">
                             <f:validator validatorId="validatorVacio"/>
                         </p:inputText>
                         <p:message for="txtNombreProducto"/>
@@ -37,7 +37,7 @@
                         <p:message for="txtDescripcionProducto"/>
 
                         <p:outputLabel for="console1" value="Marca del Producto"/>
-                        <p:selectOneMenu id="console1" value="#{mBCatProductos.productos.catProveedorNumeroProveedores}" style="width:175px">
+                        <p:selectOneMenu id="console1" value="#{mBCatProductos.productos.catProveedorNumeroProveedores}" style="width:175px" required="true">
                             <f:selectItem itemLabel="Selecciona Marca" itemValue="" />
                             <f:selectItem itemLabel="Truper" itemValue="Truper" />
                             <f:selectItem itemLabel="Dos Valles" itemValue="Dos Valles" />
@@ -47,7 +47,7 @@
                         <p:message for="console1"/> 
                         
                         <p:outputLabel for="console" value="Categoría del Producto"/>
-                        <p:selectOneMenu id="console" value="#{mBCatProductos.productos.categoriaIdCategoria}" style="width:175px">
+                        <p:selectOneMenu id="console" value="#{mBCatProductos.productos.categoriaIdCategoria}" style="width:175px" required="true">
                             <f:selectItem itemLabel="Selecciona Categoría" itemValue="" />
                             <f:selectItem itemLabel="Electricidad" itemValue="Electricidad" />
                             <f:selectItem itemLabel="Plomería" itemValue="Plomeria" />

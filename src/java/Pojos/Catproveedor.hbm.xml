@@ -23,7 +23,7 @@
         <property name="correoProveedor" type="string">
             <column name="correoProveedor" length="45" not-null="true" />
         </property>
-        <property name="categoriaIdCategoria" type="int">
+        <property name="categoriaIdCategoria" type="string">
             <column name="Categoria_idCategoria" not-null="true" />
         </property>
     </class>
