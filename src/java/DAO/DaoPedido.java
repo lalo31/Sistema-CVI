@@ -34,4 +34,10 @@ public class DaoPedido implements InterfacePedido {
         return listaPedido;
     }
     
+     public boolean deletePedido(Session session, Pedido pedido) throws Exception {
+        session.delete(pedido);
+        
+        return true;
+    }
+    
 }
