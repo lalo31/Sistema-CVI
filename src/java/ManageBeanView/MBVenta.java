@@ -247,7 +247,7 @@ public class MBVenta {
 
                 daoVentaDetalle.registrar(this.session, item);
             }
-            
+            this.listaProducto=daoProducto.getAllProductos(session); /// para actualizar la lista de stock reducido ala hora de vender 
 
             this.transaction.commit();
 
