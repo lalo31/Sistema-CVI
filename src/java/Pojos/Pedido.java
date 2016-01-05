@@ -15,14 +15,14 @@ public class Pedido  implements java.io.Serializable {
      private int cantidadRequerida;
      private float precioAprox;
      private int usuariosIdUsuarios;
-     private int categoriaIdCategoria;
-     private int catProveedorNumeroProveedores;
+     private String categoriaIdCategoria;
+     private String catProveedorNumeroProveedores;
      private int catProductoIdProducto;
 
     public Pedido() {
     }
 
-    public Pedido(Date fechaPedido, int cantidadRequerida, float precioAprox, int usuariosIdUsuarios, int categoriaIdCategoria, int catProveedorNumeroProveedores, int catProductoIdProducto) {
+    public Pedido(Date fechaPedido, int cantidadRequerida, float precioAprox, int usuariosIdUsuarios, String categoriaIdCategoria, String catProveedorNumeroProveedores, int catProductoIdProducto) {
        this.fechaPedido = fechaPedido;
        this.cantidadRequerida = cantidadRequerida;
        this.precioAprox = precioAprox;
@@ -67,18 +67,18 @@ public class Pedido  implements java.io.Serializable {
     public void setUsuariosIdUsuarios(int usuariosIdUsuarios) {
         this.usuariosIdUsuarios = usuariosIdUsuarios;
     }
-    public int getCategoriaIdCategoria() {
+    public String getCategoriaIdCategoria() {
         return this.categoriaIdCategoria;
     }
     
-    public void setCategoriaIdCategoria(int categoriaIdCategoria) {
+    public void setCategoriaIdCategoria(String categoriaIdCategoria) {
         this.categoriaIdCategoria = categoriaIdCategoria;
     }
-    public int getCatProveedorNumeroProveedores() {
+    public String getCatProveedorNumeroProveedores() {
         return this.catProveedorNumeroProveedores;
     }
     
-    public void setCatProveedorNumeroProveedores(int catProveedorNumeroProveedores) {
+    public void setCatProveedorNumeroProveedores(String catProveedorNumeroProveedores) {
         this.catProveedorNumeroProveedores = catProveedorNumeroProveedores;
     }
     public int getCatProductoIdProducto() {

@@ -20,10 +20,10 @@
         <property name="usuariosIdUsuarios" type="int">
             <column name="Usuarios_idUsuarios" not-null="true" />
         </property>
-        <property name="categoriaIdCategoria" type="int">
+        <property name="categoriaIdCategoria" type="string">
             <column name="Categoria_idCategoria" not-null="true" />
         </property>
-        <property name="catProveedorNumeroProveedores" type="int">
+        <property name="catProveedorNumeroProveedores" type="string">
             <column name="CatProveedor_numeroProveedores" not-null="true" />
         </property>
         <property name="catProductoIdProducto" type="int">
