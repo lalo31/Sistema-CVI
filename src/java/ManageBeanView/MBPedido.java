@@ -7,6 +7,7 @@
 package ManageBeanView;
 
 import DAO.DaoPedido;
+import DAO.DaoCatProductos;
 import HibernateUtil.HibernateUtil;
 import Pojos.Pedido;
 import java.util.List;
@@ -48,9 +49,17 @@ public class MBPedido {
             this.session = HibernateUtil.getSessionFactory().openSession();
             this.transaction = session.beginTransaction();
             DaoPedido daoPed = new DaoPedido();
-            daoPed.registrar(this.session, this.pedido);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se realizo exitosamente"));
-            
+            DaoCatProductos daoProd=new DaoCatProductos();
+             if(daoProd.getByCodigoProducto(this.session, this.pedido.getCatProductoIdProducto()) != null)
+            {
+                daoPed.registrar(this.session, this.pedido);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto:" , "Pedido Registrado"));
+//                return ;
+            }
+//            daoPed.registrar(this.session, this.pedido);
+             else{
+             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El Producto No Se Encuentra Registrado"));
+             }
             this.transaction.commit();
                 
             this.pedido = new Pedido();
