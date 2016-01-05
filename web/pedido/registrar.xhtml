@@ -21,6 +21,12 @@
                         <p:outputLabel value="Fecha de Pedido" for="txtFecha"/>
                         <p:calendar id="txtFecha" label="Fecha de Pedido"  showOn="button" value="#{mBPedido.pedido.fechaPedido}" pattern="dd/MM/yyyy" required="true" requiredMessage="Fecha de registro Requerida"/>
                         <p:message for="txtFecha"/>
+                        
+                        <p:outputLabel value="Codigo del Producto" for="txtProducto"/>
+                        <p:inputText id="txtProducto" label="Producto" onkeypress="return valida(event,this)" value="#{mBPedido.pedido.catProductoIdProducto}" required="true" requiredMessage="Codigo del producto Requerido">
+                            <f:validator validatorId="validatorVacio"/>
+                        </p:inputText>
+                        <p:message for="txtProducto"/>
 
                         <p:outputLabel for="console" value="Categoría del Producto" />
                         <p:selectOneMenu id="console" value="#{mBPedido.pedido.categoriaIdCategoria}" style="width:175px" required="true" requiredMessage="Categoria del producto Requerida">
@@ -42,11 +48,6 @@
                         </p:selectOneMenu>
                         <p:message for="console1"/> 
                         
-                        <p:outputLabel value="Codigo del Producto" for="txtProducto"/>
-                        <p:inputText id="txtProducto" label="Producto" onkeypress="return valida(event,this)" value="#{mBPedido.pedido.catProductoIdProducto}" required="true" requiredMessage="Codigo del producto Requerido">
-                            <f:validator validatorId="validatorVacio"/>
-                        </p:inputText>
-                        <p:message for="txtProducto"/>
                         <p:outputLabel value="Cantidad a requerir" for="txtCant"/>
                         <p:inputText id="txtCant" label="Cantidad a requerir" onkeypress="return valida(event,this)" value="#{mBPedido.pedido.cantidadRequerida}" required="true" requiredMessage="Cantidad del producto Requerida">
                             <f:validator validatorId="validatorVacio"/>
