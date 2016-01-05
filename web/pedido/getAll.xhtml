@@ -62,23 +62,23 @@
                             </p:inputText>
                             <p:message for="txtFechaPedido"/>
                            
-                            <p:outputLabel for="categoriaType" value="Tipo de Proveedor"/>
+                            <p:outputLabel for="categoriaType" value="Tipo de Categoria"/>
                             <p:selectOneMenu id="categoriaType" value="#{mBPedido.pedido.catProveedorNumeroProveedores}" style="width:175px" required="true" disabled="true">
                                 <f:selectItem itemLabel="Selecciona" itemValue="" />
-                                <f:selectItem itemLabel="1.- Electricidad" itemValue="1" />
-                                <f:selectItem itemLabel="2.- Plomería" itemValue="2" />
-                                <f:selectItem itemLabel="3.- Construcción" itemValue="3" />
-                                <f:selectItem itemLabel="4.- Jardinería" itemValue="4" />                            
+                                <f:selectItem itemLabel="Electricidad" itemValue="Electricidad" />
+                                <f:selectItem itemLabel="Plomería" itemValue="Plomería" />
+                                <f:selectItem itemLabel="Construcción" itemValue="Construcción" />
+                                <f:selectItem itemLabel="Jardinería" itemValue="Jardinería" />                            
                                 </p:selectOneMenu>                            
                             <p:message for="categoriaType"/>
 
-                            <p:outputLabel for="proveedorType" value="Tipo de Categoria"/>
+                            <p:outputLabel for="proveedorType" value="Tipo de Proveedor"/>
                             <p:selectOneMenu id="proveedorType" value="#{mBPedido.pedido.categoriaIdCategoria}" style="width:175px" required="true" disabled="true">
                                 <f:selectItem itemLabel="Selecciona" itemValue="" />
-                                <f:selectItem itemLabel="1.- Truper" itemValue="1" />
-                                <f:selectItem itemLabel="2.- Dos Valles" itemValue="2" />
-                               <f:selectItem itemLabel="3.- Ruipasa" itemValue="3" />
-                                <f:selectItem itemLabel="4.- Prisa" itemValue="4" />                           
+                                <f:selectItem itemLabel="Truper" itemValue="Truper" />
+                                <f:selectItem itemLabel="Dos Valles" itemValue="Dos Valles" />
+                               <f:selectItem itemLabel="Ruipasa" itemValue="Ruipasa" />
+                                <f:selectItem itemLabel="Prisa" itemValue="Prisa" />                           
                                 </p:selectOneMenu>                            
                             <p:message for="proveedorType"/>
 
