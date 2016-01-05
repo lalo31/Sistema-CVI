@@ -31,16 +31,15 @@
                         <p:column headerText="Fecha de pedido">
                             <h:outputText value="#{item.fechaPedido}"/>
                         </p:column>
+                       <p:column headerText="Codigo del Producto">
+                            <h:outputText value="#{item.catProductoIdProducto}"/>
+                        </p:column>
                         <p:column headerText="Categoria del producto">
                             <h:outputText value="#{item.categoriaIdCategoria}"/>
                         </p:column>
                         <p:column headerText="Proveedor">
                             <h:outputText value="#{item.catProveedorNumeroProveedores}"/>
-                        </p:column>
-                        <p:column headerText="Producto">
-                            <h:outputText value="#{item.catProductoIdProducto}"/>
-                        </p:column>
-                     
+                        </p:column>                                       
                         <p:column headerText="Cantidad a requerir">
                             <h:outputText value="#{item.cantidadRequerida}"/>
                         </p:column>
@@ -61,19 +60,15 @@
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtFechaPedido"/>
-                           
-                            <p:outputLabel for="categoriaType" value="Tipo de Categoria"/>
-                            <p:selectOneMenu id="categoriaType" value="#{mBPedido.pedido.catProveedorNumeroProveedores}" style="width:175px" required="true" disabled="true">
-                                <f:selectItem itemLabel="Selecciona" itemValue="" />
-                                <f:selectItem itemLabel="Electricidad" itemValue="Electricidad" />
-                                <f:selectItem itemLabel="Plomería" itemValue="Plomería" />
-                                <f:selectItem itemLabel="Construcción" itemValue="Construcción" />
-                                <f:selectItem itemLabel="Jardinería" itemValue="Jardinería" />                            
-                                </p:selectOneMenu>                            
-                            <p:message for="categoriaType"/>
-
-                            <p:outputLabel for="proveedorType" value="Tipo de Proveedor"/>
-                            <p:selectOneMenu id="proveedorType" value="#{mBPedido.pedido.categoriaIdCategoria}" style="width:175px" required="true" disabled="true">
+                            
+                            <p:outputLabel value="Codigo del Producto" for="txtProducto"/>
+                            <p:inputText id="txtProducto" label="Codigo del Producto" value="#{mBPedido.pedido.catProductoIdProducto}" required="true" disabled="true">
+                                <f:validator validatorId="validatorVacio"/>
+                            </p:inputText>
+                            <p:message for="txtProducto"/>
+                            
+                            <p:outputLabel for="proveedorType" value="Proveedor"/>
+                            <p:selectOneMenu id="proveedorType" value="#{mBPedido.pedido.catProveedorNumeroProveedores}" style="width:175px" required="true" disabled="true">
                                 <f:selectItem itemLabel="Selecciona" itemValue="" />
                                 <f:selectItem itemLabel="Truper" itemValue="Truper" />
                                 <f:selectItem itemLabel="Dos Valles" itemValue="Dos Valles" />
@@ -81,12 +76,16 @@
                                 <f:selectItem itemLabel="Prisa" itemValue="Prisa" />                           
                                 </p:selectOneMenu>                            
                             <p:message for="proveedorType"/>
-
-                            <p:outputLabel value="Codigo Producto" for="txtProducto"/>
-                            <p:inputText id="txtProducto" label="Codigo Producto" value="#{mBPedido.pedido.catProductoIdProducto}" required="true" disabled="true">
-                                <f:validator validatorId="validatorVacio"/>
-                            </p:inputText>
-                            <p:message for="txtProducto"/>
+                           
+                            <p:outputLabel for="categoriaType" value="Categoria"/>
+                            <p:selectOneMenu id="categoriaType" value="#{mBPedido.pedido.categoriaIdCategoria}" style="width:175px" required="true" disabled="true">
+                                <f:selectItem itemLabel="Selecciona" itemValue="" />
+                                <f:selectItem itemLabel="Electricidad" itemValue="Electricidad" />
+                                <f:selectItem itemLabel="Plomería" itemValue="Plomería" />
+                                <f:selectItem itemLabel="Construcción" itemValue="Construcción" />
+                                <f:selectItem itemLabel="Jardinería" itemValue="Jardinería" />                            
+                                </p:selectOneMenu>                            
+                            <p:message for="categoriaType"/>
 
                             <p:outputLabel value="Cantidad" for="txtCantidad"/>
                             <p:inputText id="txtCantidad" label="Cantidad" value="#{mBPedido.pedido.cantidadRequerida}" required="true" disabled="true">
