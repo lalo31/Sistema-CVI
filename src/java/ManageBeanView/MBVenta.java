@@ -241,12 +241,14 @@ public class MBVenta {
             this.venta = daoVenta.getUltimoRegistro(this.session);
 
             for (Ventadetalle item : this.listaVentaDetalle) {
-                this.producto = daoProducto.getByCodigoProducto(this.session, item.getCodigoBarrasProducto());
+                if(item.getCantidad()>this.producto.getCantidad()){
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Insuficiencia en Stock"));}
+                else{this.producto = daoProducto.getByCodigoProducto(this.session, item.getCodigoBarrasProducto());
                 item.setVenta(this.venta);
                 item.setCatproducto(this.producto);
 
                 daoVentaDetalle.registrar(this.session, item);
-            }
+            
             this.listaProducto=daoProducto.getAllProductos(session); /// para actualizar la lista de stock reducido ala hora de vender 
 
             this.transaction.commit();
@@ -254,7 +256,10 @@ public class MBVenta {
             this.listaVentaDetalle = new ArrayList<>();
             this.venta = new Venta();
 
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Venta realizada correctamente"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Venta realizada correctamente"));}}
+            
+            
+            
         } catch (Exception ex) {
             if (this.transaction != null) {
                 transaction.rollback();
