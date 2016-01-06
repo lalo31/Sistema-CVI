@@ -40,16 +40,11 @@ public class MBCatProveedores {
             DaoCatProveedores daoProv = new DaoCatProveedores();
             if(daoProv.getByRfcProveedor(this.session, this.proveedores.getRfcProveedores()) != null)
             {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "El proveedor se encuentra registrado"));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "El Proveedor se Encuentra Registrado"));
                 return ;
             }
-//            if(this.proveedores.getCategoriaIdCategoria()<=0 || this.proveedores.getCategoriaIdCategoria() >4 )
-//            {
-//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
-//                return ;
-//            }
             daoProv.registrar(this.session, this.proveedores);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro del proveedor se realizo exitosamente"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El Registro del Proveedor se Realizó Exitosamente"));
             
             this.transaction.commit();         
             this.proveedores = new Catproveedor();
@@ -118,15 +113,10 @@ public class MBCatProveedores {
 //            {
 //                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "El proveedor se encuentra registrado"));
 //                return ;
-//            }      
-//            if(this.proveedores.getCategoriaIdCategoria()<=0 || this.proveedores.getCategoriaIdCategoria() >4 )
-//            {
-//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
-//                return ;
-//            }
+//            } 
             daoProv.update(this.session, this.proveedores);
             this.transaction.commit();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se actualizo exitosamente"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se Actualizó Exitosamente"));
         }
         catch(Exception ex)
         {
@@ -157,7 +147,7 @@ public class MBCatProveedores {
             daoProv.deleteProveedor(this.session, this.proveedores);
             this.transaction.commit();
             
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se eliminó exitosamente"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se Eliminó Exitosamente"));
         }
         catch(Exception ex)
         {
