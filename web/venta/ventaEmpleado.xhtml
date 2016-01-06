@@ -90,8 +90,14 @@
                             <br></br>
                             <br></br>
                             <p:commandButton value="Realizar venta" ajax="false" actionListener="#{mBVenta.realizarVenta()}"/>
+                            <br></br>
+                             <h:commandLink value="Generar Recibo">
+                        <p:graphicImage name="/images/pdf.png" width="24"/>
+                        <p:dataExporter type="pdf" target="tablaListaProductosVenta" fileName="recibo" />
+                    </h:commandLink>
                         </h:panelGroup>
                     </p:panelGrid>
+                    
                 </h:form>
             </ui:define>
         </ui:composition>
