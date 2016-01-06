@@ -54,21 +54,15 @@ public class MBCatProductos {
             DaoCatProductos daoProd = new DaoCatProductos();
             if(daoProd.getByCodigoProducto(this.session, this.productos.getNumeroCodigo()) != null)
             {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "El producto se encuentra registrado"));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "El Producto se Encuentra Registrado"));
                 return ;
             }
-//            if(this.productos.getCategoriaIdCategoria()<=0 || this.productos.getCategoriaIdCategoria() >4 )
-//            {
-//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
-//                return ;
-//            }
-//            if(this.productos.getCatProveedorNumeroProveedores()<=0 || this.productos.getCatProveedorNumeroProveedores() >4 )
-//            {
-//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Marca Inválida"));
-//                return ;
-//            }
+            if(this.productos.getCantidad() > this.productos.getCantidadMax()){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se Informa:" , "La Cantidad Ingresada es Mayor al Stock Máximo"));
+                
+            }
             daoProd.registrar(this.session, this.productos);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El registro se realizo exitosamente"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "El Registro se Realizó Exitosamente"));
             
             this.transaction.commit();
         
@@ -149,19 +143,10 @@ public class MBCatProductos {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "El producto se encuentra registrado"));
                 return ;
             }*/
-//            if(this.productos.getCategoriaIdCategoria()<=0 || this.productos.getCategoriaIdCategoria() >4 )
-//            {
-//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Categoría Inválida"));
-//                return ;
-//            }
-//            if(this.productos.getCatProveedorNumeroProveedores()<=0 || this.productos.getCatProveedorNumeroProveedores() >4 )
-//            {
-//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:" , "Marca Inválida"));
-//                return ;
-//            }
+//            
             daoProd.update(this.session, this.productos);
             this.transaction.commit();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se actualizo exitosamente"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se Actualizó Exitosamente"));
             
             //limpiar formulario
             //RequestContext.getCurrentInstance().execute("limpiarFormulario('frmRegistrarProducto')");
@@ -195,7 +180,7 @@ public class MBCatProductos {
             daoProd.deleteProducto(this.session, this.productos);
             this.transaction.commit();
             
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se eliminó exitosamente"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se Eliminó Exitosamente"));
         }
         catch(Exception ex)
         {

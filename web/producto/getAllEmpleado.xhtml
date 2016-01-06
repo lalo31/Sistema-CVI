@@ -17,7 +17,7 @@
             <ui:define name="content">
                 <h2>Lista de Productos</h2>
                 <hr />
-                <h:form id="frmListaProducto">
+               <h:form id="frmListaProducto">
                     <p:growl id="msjGral" showDetail="true" sticky="false"/>
                     <p:dataTable id="tablaProducto" var="item" value="#{mBCatProductos.all}" paginator="true" rows="10" selection="#{mBCatProductos.productos}" selectionMode="single" rowKey="#{item.numeroCodigo}">
                         <p:ajax event="rowSelect" update=":frmListaProducto:panelDetalle" oncomplete="dialogDetalle.show()"/>
@@ -56,23 +56,23 @@
                     <p:dialog header="Datos del producto" widgetVar="dialogDetalle" modal="true" showEffect="explode" hideEffect="bounce">
                         <h:panelGrid id="panelDetalle" columns="3">
                             <p:outputLabel value="Código de producto" for="txtCodigoProducto"/>
-                            <p:inputText id="txtCodigoProducto" label="Codigo del Producto" onkeypress="return valida(event, this)" value="#{mBCatProductos.productos.numeroCodigo}" required="true" requiredMessage="Codigo de producto requerido">
+                            <p:inputText id="txtCodigoProducto" label="Codigo del Producto" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.numeroCodigo}" required="true" requiredMessage="Ingresa un Código de producto">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtCodigoProducto"/>
                             <p:outputLabel value="Nombre del producto" for="txtNombreProducto"/>
-                            <p:inputText id="txtNombreProducto" label="Nombre del Producto" value="#{mBCatProductos.productos.nombreProducto}" required="true">
+                            <p:inputText id="txtNombreProducto" label="Nombre del Producto" value="#{mBCatProductos.productos.nombreProducto}" required="true" requiredMessage="Ingresa un Nombre de Producto">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtNombreProducto"/>
                             <p:outputLabel value="Descripción del producto" for="txtDescripcionProducto"/>
-                            <p:inputText id="txtDescripcionProducto" label="Descripcion del Producto" value="#{mBCatProductos.productos.descripcionProducto}" required="true">
+                            <p:inputText id="txtDescripcionProducto" label="Descripcion del Producto" value="#{mBCatProductos.productos.descripcionProducto}" required="true" requiredMessage="Ingresa una Descripción">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtDescripcionProducto"/>
-
+                          
                             <p:outputLabel for="console1" value="Marca del Producto"/>
-                            <p:selectOneMenu id="console1" value="#{mBCatProductos.productos.catProveedorNumeroProveedores}" style="width:175px" required="true">
+                            <p:selectOneMenu id="console1" value="#{mBCatProductos.productos.catProveedorNumeroProveedores}" style="width:175px" required="true" requiredMessage="Selecciona una Marca">
                                 <f:selectItem itemLabel="Selecciona Marca" itemValue="" />
                                 <f:selectItem itemLabel="Truper" itemValue="Truper" />
                                 <f:selectItem itemLabel="Dos Valles" itemValue="Dos Valles" />
@@ -80,55 +80,55 @@
                                 <f:selectItem itemLabel="Prisa" itemValue="Prisa" />
                             </p:selectOneMenu>
                             <p:message for="console1"/> 
-
+                           
                             <p:outputLabel for="console" value="Categoría del Producto"/>
-                            <p:selectOneMenu id="console" value="#{mBCatProductos.productos.categoriaIdCategoria}" style="width:175px" required="true">
+                            <p:selectOneMenu id="console" value="#{mBCatProductos.productos.categoriaIdCategoria}" style="width:175px" required="true" requiredMessage="Selecciona una Categoría">
                                 <f:selectItem itemLabel="Selecciona Categoría" itemValue="" />
-                                <f:selectItem itemLabel="Electricidad" itemValue="Electricidadd" />
-                                <f:selectItem itemLabel="Plomería" itemValue="Plomeria" />
-                                <f:selectItem itemLabel="Construcción" itemValue="Construccion" />
-                                <f:selectItem itemLabel="Jardinería" itemValue="Jardineria" />
+                                <f:selectItem itemLabel="Electricidad" itemValue="Electricidad" />
+                                <f:selectItem itemLabel="Plomería" itemValue="Plomería" />
+                                <f:selectItem itemLabel="Construcción" itemValue="Construcción" />
+                                <f:selectItem itemLabel="Jardinería" itemValue="Jardinería" />
                             </p:selectOneMenu>
                             <p:message for="console"/> 
-
+                           
                             <p:outputLabel value="Cantidad" for="txtCantidad"/>
-                            <p:inputText id="txtCantidad" label="Cantidad" onkeypress="return valida(event, this)" value="#{mBCatProductos.productos.cantidad}" required="true">
+                            <p:inputText id="txtCantidad" label="Cantidad" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.cantidad}" required="true" requiredMessage="Ingresa una Cantidad">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtCantidad"/>
-
+                            
                             <p:outputLabel value="Stock Mínimo" for="txtCantidad2"/>
-                            <p:inputText id="txtCantidad2" label="Stock Minimo" onkeypress="return valida(event, this)" value="#{mBCatProductos.productos.cantidadMin}" required="true">
+                            <p:inputText id="txtCantidad2" label="Stock Minimo" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.cantidadMin}" required="true" requiredMessage="Ingresa una Cantidad Mínima">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtCantidad2"/>
-
+                            
                             <p:outputLabel value="Stock Máximo" for="txtCantidad3"/>
-                            <p:inputText id="txtCantidad3" label="Stock Maximo" onkeypress="return valida(event, this)" value="#{mBCatProductos.productos.cantidadMax}" required="true">
+                            <p:inputText id="txtCantidad3" label="Stock Maximo" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.cantidadMax}" required="true" requiredMessage="Ingresa una Cantidad Máxima>
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtCantidad3"/>
-
+                            
                             <p:outputLabel value="Precio Unitario" for="txtPrecio"/>
-                            <p:inputText id="txtPrecio" label="Precio Unitario" onkeypress="return valida(event, this)" value="#{mBCatProductos.productos.precioVentaUnitario}" required="true">
+                            <p:inputText id="txtPrecio" label="Precio Unitario" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.precioVentaUnitario}" required="true" requiredMessage="Ingresa un Precio de Venta">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtPrecio"/>
                             <p:outputLabel value="Fecha de registro del producto" for="txtFecha"/>
-                            <p:calendar id="txtFecha" label="Fecha de registro del Producto"  showOn="button" value="#{mBCatProductos.productos.fechaRegistroProducto}" pattern="dd/MM/yyyy" required="true" requiredMessage="Fecha de registro Requerida"/>
+                            <p:calendar id="txtFecha" label="Fecha de registro del Producto"  showOn="button" value="#{mBCatProductos.productos.fechaRegistroProducto}" pattern="dd/MM/yyyy" required="true" requiredMessage="Ingresa una Fecha de registro"/>
                             <p:message for="txtFecha"/>
                             <p:commandButton value="Eliminar Producto" actionListener="#{mBCatProductos.deleteProducto()}"  update="frmListaProducto">
                                 <p:confirm header="Confirmación" message="¿Estas seguro de borrar el producto?" icon="ui-icon-alert" />
                             </p:commandButton>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
                             <p:commandButton value="Modificar Producto" actionListener="#{mBCatProductos.update()}" update="frmListaProducto">
                                 <p:confirm header="Confirmación" message="¿Estas seguro de modificar al usuario?" icon="ui-icon-alert" />
                             </p:commandButton>
                             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                                 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                             </p:confirmDialog>
                         </h:panelGrid>
