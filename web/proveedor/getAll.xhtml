@@ -82,6 +82,7 @@
                             <p:outputLabel value="Correo del proveedor" for="txtCorreoProveedor"/>
                             <p:inputText id="txtCorreoProveedor" label="Correo del proveedor" value="#{mBCatProveedores.proveedores.correoProveedor}" required="true" requiredMessage="Ïngresa un Correo">
                                 <f:validator validatorId="validatorVacio"/>
+                                <f:validator validatorId="validatorEmail"/>
                             </p:inputText>
                             <p:message for="txtCorreoProveedor"/>
 
