@@ -51,24 +51,23 @@
                     <p:dialog header="Datos del Pedido" widgetVar="dialogDetalle" modal="true" showEffect="explode" hideEffect="bounce">
                         <h:panelGrid id="panelDetalle" columns="3">
                             <p:outputLabel value="Numero de pedido" for="txtNumero"/>
-                            <p:inputText id="txtNumero" label="Numero del pedido" onkeypress="return validar(event, this)" value="#{mBPedido.pedido.numeroPedido}" required="true" requiredMessage="Numero Requerido" disabled="true">
+                            <p:inputText id="txtNumero" label="Numero del pedido" onkeypress="return validar(event, this)" value="#{mBPedido.pedido.numeroPedido}" required="true" requiredMessage="Numero Requerido" readonly="true" >
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtNumero"/>
-                            <p:outputLabel value="Fecha Pedido" for="txtFechaPedido"/>
-                            <p:inputText id="txtFechaPedido" label="Fecha Pedido" onkeypress="return validar(event, this)" value="#{mBPedido.pedido.fechaPedido}" required="true" disabled="true">
-                                <f:validator validatorId="validatorVacio"/>
-                            </p:inputText>
-                            <p:message for="txtFechaPedido"/>
+
+                            <p:outputLabel value="Fecha Pedido" for="txtFecha"/>
+                            <p:calendar id="txtFecha" label="Fecha de registro del Producto"  showOn="button" value="#{mBPedido.pedido.fechaPedido}" pattern="dd/MM/yyyy" required="true" requiredMessage="Ingresa una Fecha de registro" readonly="true"/>
+                            <p:message for="txtFecha"/>
                             
                             <p:outputLabel value="Codigo del Producto" for="txtProducto"/>
-                            <p:inputText id="txtProducto" label="Codigo del Producto" value="#{mBPedido.pedido.catProductoIdProducto}" required="true" disabled="true">
+                            <p:inputText id="txtProducto" label="Codigo del Producto" value="#{mBPedido.pedido.catProductoIdProducto}" required="true" readonly="true" >
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtProducto"/>
                             
                             <p:outputLabel for="proveedorType" value="Proveedor"/>
-                            <p:selectOneMenu id="proveedorType" value="#{mBPedido.pedido.catProveedorNumeroProveedores}" style="width:175px" required="true" disabled="true">
+                            <p:selectOneMenu id="proveedorType" value="#{mBPedido.pedido.catProveedorNumeroProveedores}" style="width:175px" required="true">
                                 <f:selectItem itemLabel="Selecciona" itemValue="" />
                                 <f:selectItem itemLabel="Truper" itemValue="Truper" />
                                 <f:selectItem itemLabel="Dos Valles" itemValue="Dos Valles" />
@@ -78,9 +77,9 @@
                             <p:message for="proveedorType"/>
                            
                             <p:outputLabel for="categoriaType" value="Categoria"/>
-                            <p:selectOneMenu id="categoriaType" value="#{mBPedido.pedido.categoriaIdCategoria}" style="width:175px" required="true" disabled="true">
+                            <p:selectOneMenu id="categoriaType" value="#{mBPedido.pedido.categoriaIdCategoria}" style="width:175px" required="true">
                                 <f:selectItem itemLabel="Selecciona" itemValue="" />
-                                <f:selectItem itemLabel="Electricidad" itemValue="Electricidad" />
+                                <f:selectItem itemLabel="Electricidad" itemValue="Electricidad"/>
                                 <f:selectItem itemLabel="Plomería" itemValue="Plomería" />
                                 <f:selectItem itemLabel="Construcción" itemValue="Construcción" />
                                 <f:selectItem itemLabel="Jardinería" itemValue="Jardinería" />                            
@@ -88,13 +87,13 @@
                             <p:message for="categoriaType"/>
 
                             <p:outputLabel value="Cantidad" for="txtCantidad"/>
-                            <p:inputText id="txtCantidad" label="Cantidad" value="#{mBPedido.pedido.cantidadRequerida}" required="true" disabled="true">
+                            <p:inputText id="txtCantidad" label="Cantidad" value="#{mBPedido.pedido.cantidadRequerida}" required="true" readonly="true">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtCantidad"/>
 
                             <p:outputLabel value="Precio" for="txtPrecio"/>
-                            <p:inputText id="txtPrecio" label="Precio" value="#{mBPedido.pedido.precioAprox}" required="true" disabled="true">
+                            <p:inputText id="txtPrecio" label="Precio" value="#{mBPedido.pedido.precioAprox}" required="true" readonly="true">
                             </p:inputText>
                             <p:message for="txtPrecio"/>
 
