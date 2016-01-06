@@ -13,13 +13,12 @@
             <ui:define name="top">
 
             </ui:define>
-
             <ui:define name="content">
                 <h2>Lista de Proveedores</h2>
                 <hr />-
                 <h:form id="frmListaProveedores">
                     <p:growl id="msjGral" showDetail="true" sticky="false"/>
-                    <p:dataTable id="tablaProveedor" var="item" value="#{mBCatProveedores.all}" paginator="true" rows="10" selection="#{mBCatProveedores.proveedores}" selectionMode="single" rowKey="#{item.numeroProveedores}" filteredValue="#{mBCatProveedores.listaProveedoresFiltrado}">
+                    <p:dataTable id="tablaProveedor" var="item" emptyMessage="No se Encontraron Registros de Proveedores" value="#{mBCatProveedores.all}" paginator="true" rows="10" selection="#{mBCatProveedores.proveedores}" selectionMode="single" rowKey="#{item.numeroProveedores}" filteredValue="#{mBCatProveedores.listaProveedoresFiltrado}">
                         <p:ajax event="rowSelect" update=":frmListaProveedores:panelDetalle" oncomplete="dialogDetalle.show()"/>
                         <f:facet name="header">
                             Lista de Proveedores
