@@ -19,7 +19,7 @@
                 <hr />
                 <h:form id="frmListaPedido">
                     <p:growl id="msjGral" showDetail="true" sticky="false"/>
-                    <p:dataTable id="tablaPedido" var="item" value="#{mBPedido.all}" paginator="true" rows="10" selection="#{mBPedido.pedido}" selectionMode="single" rowKey="#{item.numeroPedido}">
+                    <p:dataTable id="tablaPedido" emptyMessage="No se Encontraron Registros de Productos" var="item" value="#{mBPedido.all}" paginator="true" rows="10" selection="#{mBPedido.pedido}" selectionMode="single" rowKey="#{item.numeroPedido}">
                      <p:ajax event="rowSelect" update=":frmListaPedido:panelDetalle" oncomplete="dialogDetalle.show()"/>     
                         <f:facet name="header">
                             Lista de pedidos
