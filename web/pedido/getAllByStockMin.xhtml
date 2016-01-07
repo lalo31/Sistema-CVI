@@ -19,7 +19,7 @@
                 <hr />
                 <h:form id="frmListaProducto">
                     <p:growl id="msjGral" showDetail="true" sticky="false"/>
-                    <p:dataTable id="tablaProducto" var="item" value="#{mBCatProductos.allbyStockMinimo}" paginator="true" rows="10" selection="#{mBCatProductos.productos}" selectionMode="single" rowKey="#{item.numeroCodigo}">
+                    <p:dataTable id="tablaProducto" emptyMessage="No se Encontraron Faltantes de Productos" var="item" value="#{mBCatProductos.allbyStockMinimo}" paginator="true" rows="10" selection="#{mBCatProductos.productos}" selectionMode="single" rowKey="#{item.numeroCodigo}">
 
                         <f:facet name="header">
                             Lista de Productos Faltantes
