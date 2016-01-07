@@ -144,6 +144,10 @@ public class MBCatProductos {
                 return ;
             }*/
 //            
+            if(this.productos.getCantidad() > this.productos.getCantidadMax()){
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se Informa:" , "La Cantidad Ingresada es Mayor al Stock Máximo"));
+                
+            }
             daoProd.update(this.session, this.productos);
             this.transaction.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Se Actualizó Exitosamente"));
