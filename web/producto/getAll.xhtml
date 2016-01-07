@@ -13,18 +13,17 @@
             <ui:define name="top">
 
             </ui:define>
-
             <ui:define name="content">
                 <h2>Lista de Productos</h2>
                 <hr />
                 <h:form id="frmListaProducto">
                     <p:growl id="msjGral" showDetail="true" sticky="false"/>
-                    <p:dataTable id="tablaProducto" var="item" value="#{mBCatProductos.all}" paginator="true" rows="10" selection="#{mBCatProductos.productos}" selectionMode="single" rowKey="#{item.numeroCodigo}">
+                    <p:dataTable id="tablaProducto" var="item" emptyMessage="No se Encontraron Registros de Productos" value="#{mBCatProductos.all}" paginator="true" rows="10" selection="#{mBCatProductos.productos}" selectionMode="single" rowKey="#{item.numeroCodigo}">
                         <p:ajax event="rowSelect" update=":frmListaProducto:panelDetalle" oncomplete="dialogDetalle.show()"/>
                         <f:facet name="header">
                             Lista de Productos
                         </f:facet>
-                        <p:column headerText="Código de producto" filterBy="#{item.numeroCodigo}">
+                        <p:column sortBy="#{item.numeroCodigo}" headerText="Código de producto" filterBy="#{item.numeroCodigo}">
                             <h:outputText value="#{item.numeroCodigo}"/>
                         </p:column>
                         <p:column headerText="Nombre del producto" filterBy="#{item.nombreProducto}">
@@ -36,7 +35,7 @@
                         <p:column headerText="Categoría del producto">
                             <h:outputText value="#{item.categoriaIdCategoria}"/>
                         </p:column>
-                        <p:column headerText="Producto en stock">
+                        <p:column sortBy="#{item.cantidad}" headerText="Producto en stock">
                             <h:outputText value="#{item.cantidad}"/>
                         </p:column>
                         <p:column headerText="Stock Mínimo">
@@ -110,7 +109,7 @@
                             <p:message for="txtCantidad3"/>
                             
                             <p:outputLabel value="Precio Unitario" for="txtPrecio"/>
-                            <p:inputText id="txtPrecio" label="Precio Unitario" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.precioVentaUnitario}" required="true" requiredMessage="Ingresa un Precio de Venta">
+                            <p:inputText id="txtPrecio" label="Precio Unitario" onkeypress="return valida(event,this)" value="#{mBCatProductos.productos.precioVentaUnitario}" required="true" requiredMessage="Ingresa un Precio de Unitario">
                                 <f:validator validatorId="validatorVacio"/>
                             </p:inputText>
                             <p:message for="txtPrecio"/>
